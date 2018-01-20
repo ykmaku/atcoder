@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
+#include <queue>
+#include <set>
+#include <numeric>
+#include <cmath>
+
+using namespace std;
+
+typedef long long int lld;
+
+const lld mod = 1e9+7;
+const lld INF = 1e9;
+//const lld MAXN = 1e9;
+
+int main()
+{
+    string s;
+    cin >> s;
+
+    int n = s.length();
+    int sol = n;
+
+    for(int i = 1; i < n; i++)
+    {
+        if (s[i-1] != s[i])
+        {
+            sol = min(sol,max(i,n-i));
+        }
+    }
+
+    cout << sol << endl;
+
+    return 0;
+}
