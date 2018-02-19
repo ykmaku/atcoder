@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
+#include <queue>
+#include <set>
+#include <numeric>
+#include <cmath>
+
+using namespace std;
+
+typedef long long int lld;
+
+const lld mod = 1e9+7;
+const lld INF = 1e9;
+//const lld MAXN = 1e9;
+
+int main()
+{
+    int n,a;
+    cin >> n >> a;
+
+    n %= 500;
+
+    if (n <= a)
+    {
+        cout << "Yes" << endl;
+    }else
+    {
+        cout << "No" << endl;
+    }
+
+    return 0;
+}
