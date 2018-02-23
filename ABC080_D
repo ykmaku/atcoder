@@ -1,0 +1,75 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
+#include <queue>
+#include <set>
+#include <numeric>
+#include <cmath>
+
+using namespace std;
+
+typedef long long int lld;
+
+const lld mod = 1e9+7;
+const lld INF = 1e9;
+//const lld MAXN = 1e9;
+
+struct channel
+{
+    int s,t,c;
+
+    bool operator<(const channel& a) const
+    {
+        return t > a.t;
+    }
+};
+
+int main()
+{
+    int n,c;
+    cin >> n >> c;
+    vector<channel> tv(n);
+    for(int i = 0; i < n; i++)
+    {
+        cin >> tv[i].s >> tv[i].t >> tv[i].c;
+    }
+
+    sort(tv.begin(),tv.end());
+
+    vector<channel> sol;
+
+    sol.push_back(tv[0]);
+
+    for(int i = 1; i < n; i++)
+    {
+        int j = 0;
+        while(1)
+        {
+            if (j >= sol.size())
+            {
+                sol.push_back(tv[i]);
+                break;
+            }
+            if (sol[j].c == tv[i].c)
+            {
+                sol[j] = tv[i];
+                break;
+            }else
+            {
+                if (sol[j].s > tv[i].t)
+                {
+                    sol[j] = tv[i];
+                    break;
+                }else
+                {
+                    j++;
+                }
+            }
+        }
+    }
+    cout << sol.size() << endl;
+
+    return 0;
+}
