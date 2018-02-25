@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
+#include <queue>
+#include <set>
+#include <numeric>
+#include <cmath>
+
+using namespace std;
+
+typedef long long int lld;
+
+const lld mod = 1e9+7;
+const lld INF = 1e9;
+//const lld MAXN = 1e9;
+
+int main()
+{
+	lld n,z,w;
+	cin >> n >> z >> w;
+	vector<lld> a(n);
+	for(int i = 0; i < n; i++)
+	{
+		cin >> a[i];
+	}
+
+	if (n == 1)
+	{
+		cout << abs(a[0] - w);
+	}else
+	{
+		cout << max(abs(a[n-1]-w), abs(a[n-1]-a[n-2])) << endl;
+	}
+
+	return 0;
+}
