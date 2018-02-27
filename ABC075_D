@@ -1,0 +1,72 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
+#include <queue>
+#include <set>
+#include <numeric>
+#include <cmath>
+
+using namespace std;
+
+typedef long long int lld;
+typedef pair<lld,lld> node;
+
+const lld mod = 1e9+7;
+const lld INF = 1e9;
+//const lld MAXN = 1e9;
+
+int main()
+{
+	int n,K;
+	cin >> n >> K;
+
+	vector<node> p(n);
+
+	for(int i = 0; i < n; i++)
+	{
+		cin >> p[i].first >> p[i].second;
+	}
+	unsigned long long  sol = 4*1e18;
+
+	for(int i = 0; i < n; i++)
+	{
+		for(int j = 0; j < n; j++)
+		{
+			for(int k = 0; k < n; k++)
+			{
+				for(int l = 0; l < n; l++)
+				{
+					lld x_min = min(min(p[i].first,p[j].first),min(p[k].first,p[l].first));
+					lld x_max = max(max(p[i].first,p[j].first),max(p[k].first,p[l].first));
+					lld y_min = min(min(p[i].second,p[j].second),min(p[k].second,p[l].second));
+					lld y_max = max(max(p[i].second,p[j].second),max(p[k].second,p[l].second));
+
+					lld cnt = 0;
+
+					for(int q = 0; q < n; q++)
+					{
+						if (x_min <= p[q].first && p[q].first <= x_max && y_min <= p[q].second && p[q].second <= y_max )
+						{
+							cnt++;
+						}
+					}
+
+					if (cnt >= K)
+					{
+						unsigned long long s = abs(x_max-x_min) * abs(y_max-y_min);
+						if (s < sol)
+						{
+							sol = s;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	cout << sol << endl;
+
+	return 0;
+}
