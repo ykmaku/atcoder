@@ -1,0 +1,154 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
+#include <queue>
+#include <set>
+#include <numeric>
+#include <cmath>
+
+using namespace std;
+
+typedef long long int lld;
+
+const lld mod = 1e9+7;
+const lld INF = 1e9;
+const lld MAXN = 1e5;
+
+struct node
+{
+	lld x,y;
+	int num;
+
+	bool operator<(const node& q) const
+	{
+		return x> q.x;
+	}
+};
+
+struct edge
+{
+	lld x,y;
+	lld c;
+
+	bool operator<(const edge& q) const
+	{
+		return c < q.c;
+	}
+};
+
+lld n;
+lld par[MAXN] = {0}, r[MAXN] = {0} ;
+
+void init(lld n)
+{
+	for(int i = 0; i < n; i++)
+	{
+		par[i] = i;
+		r[i] = 0;
+	}
+}
+
+lld find(lld x)
+{
+	if (par[x] == x)
+	{
+		return x;
+	}else
+	{
+		return par[x] = find(par[x]);
+	}
+}
+
+
+void unite(lld x,lld y)
+{
+	x = find(x);
+	y = find(y);
+
+	if (x == y)
+	{
+		return;
+	}
+	if (r[x] < r[y])
+	{
+		par[x] = y;
+	}else
+	{
+		par[y] = x;
+		if (r[x] == r[y])
+		{
+			r[x]++;
+		}
+	}
+}
+
+bool same(lld x,lld y)
+{
+	return find(x) == find(y);
+}
+
+
+
+int main()
+{
+	cin >> n;
+	vector<node> p(n);
+	for(int i = 0; i < n; i++)
+	{
+		cin >> p[i].x >> p[i].y;
+		p[i].num = i;
+	}
+
+	vector<node> p_y(n);
+	for(int i = 0; i < n; i++)
+	{
+		p_y[i].x = p[i].y;
+		p_y[i].y = p[i].x;
+		p_y[i].num = i;
+	}
+
+	sort(p.begin(),p.end());
+	vector<edge> e;
+	for(int i = 0; i < n-1; i++)
+	{
+		edge eee;
+		eee.x = p[i].num;
+		eee.y = p[i+1].num;
+		eee.c = abs(p[i].x-p[i+1].x);
+
+		e.push_back(eee);
+	}
+
+	sort(p_y.begin(),p_y.end());
+	for(int i = 0; i < n-1; i++)
+	{
+		edge eee;
+		eee.x = p_y[i].num;
+		eee.y = p_y[i+1].num;
+		eee.c = abs(p_y[i].x-p_y[i+1].x);
+
+		e.push_back(eee);
+	}
+
+	sort(e.begin(),e.end());
+
+	init(n);
+
+	lld sum = 0;
+
+	for(int i = 0; i < e.size(); i++)
+	{
+		if (!same(e[i].x,e[i].y))
+		{
+			unite(e[i].x,e[i].y);
+			sum += e[i].c;
+		}
+	}
+
+	cout << sum << endl;
+
+
+	return 0;
+}
