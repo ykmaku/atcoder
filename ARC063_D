@@ -1,0 +1,54 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
+#include <queue>
+#include <set>
+#include <numeric>
+#include <cmath>
+
+using namespace std;
+
+typedef long long int lld;
+
+const lld mod = 1e9+7;
+const lld INF = 1e9;
+//const lld MAXN = 1e9;
+
+int main()
+{
+	lld n,t;
+	cin >> n >> t;
+	vector<lld> a(n);
+	for(int i = 0; i < n; i++)
+	{
+		cin >> a[i];
+	}
+
+	vector<lld> p(n);
+	p[0]=0;
+	lld cur_min = a[0];
+	for(int i = 1; i < n; i++)  //****ここ個人的point
+	{
+		p[i] = max((lld)0,a[i] - cur_min);
+		cur_min = min(cur_min,a[i]);
+	}
+
+	lld max_p = -1;
+	for(int i = 0; i < n; i++)
+	{
+		max_p = max(max_p,p[i]);
+	}
+	lld ans = 0;
+	for(int i = 0; i < n; i++)
+	{
+		if (p[i]==max_p)
+		{
+			ans++;
+		}
+	}
+	cout << ans << endl;
+
+	return 0;
+}
