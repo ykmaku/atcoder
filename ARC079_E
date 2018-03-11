@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
+#include <queue>
+#include <set>
+#include <numeric>
+#include <cmath>
+
+using namespace std;
+
+typedef long long int lld;
+
+const lld mod = 1e9+7;
+const lld INF = 1e9;
+//const lld MAXN = 1e9;
+
+int main()
+{
+	lld n;
+	cin >> n;
+	vector<lld> a(n);
+	for(int i = 0; i < n; i++)
+	{
+		cin >> a[i];
+	}
+
+	lld ans = 0;
+	//int cnt = 0;
+	while(1)
+	{
+		//cnt++;
+		//if(cnt>30) break;
+		bool ch = true;
+		lld x[50] = {0};
+		// for(int i = 0; i < n; i++) cout << a[i] << " ";
+		// printf("\n");
+		lld ope = 0;
+		for(int i = 0; i < n; i++)
+		{
+			if (a[i]>=n) ch = false;
+			x[i] = a[i]/n;
+			ope += x[i];
+			a[i] -= x[i]*n;
+		}
+		if(ch) break;
+		for(int i = 0; i < n; i++)
+		{
+			a[i] += ope - x[i];
+		}
+		ans+=ope;
+	}
+
+	cout << ans << endl;
+
+	return 0;
+}
