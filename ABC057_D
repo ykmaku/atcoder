@@ -1,0 +1,98 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
+#include <queue>
+#include <set>
+#include <numeric>
+#include <cmath>
+
+using namespace std;
+
+typedef long long int lld;
+
+const lld mod = 1e9+7;
+const lld INF = 1e9;
+//const lld MAXN = 1e9;
+
+lld C[51][51] = {0};  //C[n][k] == nCk
+
+void pascal(lld n)
+{
+	for(lld i = 0; i <= n; i++)
+	{
+		for(lld j = 0; j <= n; j++)
+		{
+			if (i == 0 || i < j)
+			{
+				C[i][j] = (lld)0;
+			}else if (j == 0 || i == j)
+			{
+				C[i][j] = (lld)1;
+			}else
+			{
+				C[i][j] = C[i-1][j-1] + C[i-1][j];
+			}
+		}
+	}
+}
+
+int main()
+{
+	lld n,a,b;
+	cin >> n >> a >> b;
+	vector<lld> v(n);
+	for(int i = 0; i < n; i++)
+	{
+		cin >> v[i];
+	}
+	sort(v.begin(),v.end(),greater<lld>());
+	vector<double> ave(n);
+
+	lld sum = 0;
+	double max_ave=0.0;
+	for(int i = 0; i < a; i++)
+	{
+		sum += v[i];
+	}
+	max_ave = (double)sum/a;
+
+	printf("%.12f\n", max_ave);
+	pascal(n);
+
+	lld ans = 0;
+	
+	if (v[0] == v[a-1])
+	{
+		multiset<lld> ss;
+		for(int j = 0; j < n; j++)
+		{
+			ss.insert(v[j]);
+		}
+		lld y = ss.count(v[0]);
+		for(int i = a; i <= min(b,y); i++)
+		{
+			ans += C[y][i];
+		}
+	}else
+	{
+		multiset<lld> ss,tt;
+		for(int j = 0; j < n; j++)
+		{
+			ss.insert(v[j]);
+		}
+		for(int j = 0; j < a; j++)
+		{
+			tt.insert(v[j]);
+		}
+
+		lld y = ss.count(v[a-1]);
+		lld x = tt.count(v[a-1]);
+
+		ans += C[y][x];
+	}
+	cout << ans << endl;
+
+	return 0;
+}
