@@ -1,0 +1,2 @@
+USERNAME="ykmaku"
+PASSWORD="k53kL4me"
