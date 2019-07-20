@@ -1,6 +1,3 @@
-# import sys
-# print(sys.version)
-# print(sys.path)
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -10,20 +7,33 @@ import sys
 import re
 import subprocess
 import glob
+from getpass import getpass
 
-from src import myconfig
-from src import atcoder_autotest as acat
+# from src import myconfig
+# from src import atcoder_autotest as acat
 
 ROOT_DIR = os.path.abspath("./")
 
 LOGIN_URL = "https://beta.atcoder.jp/login"
 CONTSET_URL = url = "https://atcoder.jp/contests/"
 
-USERNAME = myconfig.USERNAME
-PASSWORD = myconfig.PASSWORD
+# USERNAME = myconfig.USERNAME
+# PASSWORD = myconfig.PASSWORD
 
 if __name__ == "__main__":
-	# acat.login(USERNAME,PASSWORD)
+	if not os.path.isfile(os.path.join(ROOT_DIR,"src/","myconfig.py")):
+		file_name = "myconfig.py"
+		path = os.path.join(ROOT_DIR,"src/",file_name)
+		username=input("your username : ")
+		password = getpass("your password : ")
+		with open(path,mode='w') as f:
+			f.write("USERNAME='{}'\n".format(username))
+			f.write("PASSWORD='{}'\n".format(password))
+	
+	from src import atcoder_autotest as acat
+	from src import myconfig
+	USERNAME = myconfig.USERNAME
+	PASSWORD = myconfig.PASSWORD	
 
 	args = sys.argv
 

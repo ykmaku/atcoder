@@ -1,2 +1,2 @@
-USERNAME="ykmaku"
-PASSWORD="k53kL4me"
+USERNAME='ykmaku'
+PASSWORD='k53kL4me'

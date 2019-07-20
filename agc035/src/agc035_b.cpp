@@ -23,6 +23,6 @@ const ll MAXN = 1e9;
 
 int main()
 {
-
+	
 	return 0;
 }

@@ -27,6 +27,8 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	string s;
+	cin>>s;
+	
 	return 0;
 }
