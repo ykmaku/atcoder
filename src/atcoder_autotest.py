@@ -37,6 +37,28 @@ def get_tests(dir,url):
 	url : str,問題ページのurl
 	dir : str, path
 	"""
+
+	session = requests.session()
+
+	r = session.get(LOGIN_URL)
+	s = BeautifulSoup(r.text,'html.parser')
+	csrf_token = s.find(attrs={'name': 'csrf_token'}).get('value')
+
+	login_info = {
+		"csrf_token": csrf_token,
+		"username": myconfig.USERNAME,
+		"password": myconfig.PASSWORD
+	}
+
+	result = session.post(LOGIN_URL, data=login_info)
+	result.raise_for_status()
+	if result.status_code==200:
+		print("log in!")
+	else:
+		print("failed...")
+		
+
+
 	page = requests.get(url)
 	soup = BeautifulSoup(page.content, 'html.parser')
 	for sec in soup.find_all('section'):
@@ -162,33 +184,33 @@ def test(DIR,problem_name):
 			print("----sample {} passed!!!----".format(num))
 		print("\n")
 
-def login(USERNAME,PASSWORD):
-	"""
-	ログインする
+# def login(USERNAME,PASSWORD):
+# 	"""
+# 	ログインする
 
-	Parameters
-	----------
-	USERNAME ; str
-	PASSWORD : str
-	"""
-	session = requests.session()
+# 	Parameters
+# 	----------
+# 	USERNAME ; str
+# 	PASSWORD : str
+# 	"""
+# 	session = requests.session()
 
-	r = session.get(LOGIN_URL)
-	s = BeautifulSoup(r.text,'html.parser')
-	csrf_token = s.find(attrs={'name': 'csrf_token'}).get('value')
+# 	r = session.get(LOGIN_URL)
+# 	s = BeautifulSoup(r.text,'html.parser')
+# 	csrf_token = s.find(attrs={'name': 'csrf_token'}).get('value')
 
-	login_info = {
-		"csrf_token": csrf_token,
-		"username": USERNAME,
-		"password": PASSWORD
-	}
+# 	login_info = {
+# 		"csrf_token": csrf_token,
+# 		"username": USERNAME,
+# 		"password": PASSWORD
+# 	}
 
-	result = session.post(LOGIN_URL, data=login_info)
-	result.raise_for_status()
-	if result.status_code==200:
-		print("log in!")
-	else:
-		print("failed...")
+# 	result = session.post(LOGIN_URL, data=login_info)
+# 	result.raise_for_status()
+# 	if result.status_code==200:
+# 		print("log in!")
+# 	else:
+# 		print("failed...")
 		
 		
 		
@@ -210,7 +232,7 @@ if __name__ == "__main__":
 	# comp("abc133_a")
 	# test("abc133_a")
 
-	login()
+	# login()
 
 	args = sys.argv
 	# for arg in args:

@@ -27,6 +27,8 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	int r;
+	cin>>r;
+	cout<<3*r*r<<endl;
 	return 0;
 }

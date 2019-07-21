@@ -27,6 +27,8 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	int n,d;
+	cin>>n>>d;
+	cout<<ceil((double)n/(2*d+1))<<endl;
 	return 0;
 }

@@ -27,6 +27,21 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	int n;
+	cin>>n;
+	vector<int> a(n);
+	for (int i = 0; i < n; i++){
+		cin>>a[i];
+		a[i] *= -1;
+	}
+	vector<int> dp(n,1);
+	for (int i = 0; i < n; i++){
+		*upper_bound(all(dp),a[i]) = a[i];
+	}
+	int ans = -1;
+	for (int i = 0; i < n; i++){
+		if(dp[i]<=0) ans = i+1;
+	}
+	cout<<ans<<endl;
 	return 0;
 }

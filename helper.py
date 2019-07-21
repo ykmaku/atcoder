@@ -54,7 +54,7 @@ if __name__ == "__main__":
 		task_url = acat.make_url(contest_name,problem)
 		task_path = acat.make_dir(ROOT_DIR,contest_name,problem)
 		if(glob.glob(task_path+"/*")==[]):
-			acat.login(USERNAME,PASSWORD)
+			# acat.login(USERNAME,PASSWORD)
 			acat.get_tests(task_path,task_url)
 		acat.comp(ROOT_DIR,problem_name)
 		acat.test(ROOT_DIR,problem_name)
