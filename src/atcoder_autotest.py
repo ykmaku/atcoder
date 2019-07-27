@@ -56,11 +56,12 @@ def get_tests(dir,url):
 		print("log in!")
 	else:
 		print("failed...")
-		
 
-
+	# print(url)
 	page = requests.get(url)
+	# print(page)
 	soup = BeautifulSoup(page.content, 'html.parser')
+	# print(soup)
 	for sec in soup.find_all('section'):
 		h3s = sec.find_all("h3")
 		for h3 in h3s:
