@@ -9,6 +9,7 @@
 #include <map>
 #include <numeric>
 #include <cmath>
+#include <cassert>
 
 using namespace std;
 
@@ -19,10 +20,17 @@ typedef pair<int,int> P;
 
 const ll mod = 1e9+7;
 const ll INF = 1e9;
-const ll MAXN = 1e9;
+
+ll gcd(ll a,ll b){return b?gcd(b,a%b):a;}
+int dx[4]={1,0,-1,0};
+int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	int a,b;
+	cin>>a>>b;
+	if(a>=13) cout<<b<<endl;
+	else if(a>=6)cout<<b/2<<endl;
+	else cout<< 0<<endl;
 	return 0;
 }
