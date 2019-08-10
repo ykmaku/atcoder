@@ -31,7 +31,6 @@ def get_tests(dir,url):
 	"""
 	url先のページからテストを取得する.
 	テストごとにテストの入力/出力ファイルを作成する
-
 	Parameter
 	------
 	url : str,問題ページのurl
@@ -56,12 +55,11 @@ def get_tests(dir,url):
 		print("log in!")
 	else:
 		print("failed...")
+		
 
-	# print(url)
+
 	page = requests.get(url)
-	# print(page)
 	soup = BeautifulSoup(page.content, 'html.parser')
-	# print(soup)
 	for sec in soup.find_all('section'):
 		h3s = sec.find_all("h3")
 		for h3 in h3s:
@@ -96,7 +94,6 @@ def make_contest(DIR,name,num):
 		contest-- src
 			|- test
 	問題数を指定してその数だけsrc直下にcppファイルを作成
-
 	Parameters
 	---------
 	name : str, abc122とかコンテストの名前
@@ -124,7 +121,6 @@ def make_contest(DIR,name,num):
 def comp(DIR,problem_name):
 	"""
 	cppをコンパイルする
-
 	Parameter
 	---------
 	problem_name : str
@@ -141,9 +137,7 @@ def test(DIR,problem_name):
 	入出力を表示する
 	正解は正解したと知らせるだけにする
 	間違えた問題だけ入出力を表示する
-
 	制限時間以上かかったら強制終了するようにしたい
-
 	Parameter
 	--------
 	problem_name : str
