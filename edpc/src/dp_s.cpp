@@ -25,32 +25,27 @@ ll gcd(ll a,ll b){return b?gcd(b,a%b):a;}
 int dx[4]={1,0,-1,0};
 int dy[4]={0,1,0,-1};
 
-ll f(ll x){
-	vector<vector<vector<ll>>> dp(20,vector<vector<ll>>(2,vector<ll>(2,0)));
-	string s = to_string(x);
-	int l = s.length();
+ll dp[10010][2][110] = {};
 
+int main()
+{
+	string k;
+	int d;
+	cin>>d>>k;
+	
+	int l = k.length();
 	dp[0][0][0] = 1;
-
 	for (int i = 0; i < l; i++){
-		int D = s[i] - '0';
-		for (int j = 0; j < 2; j++){
-			for (int k = 0; k < 2; k++){
-				for (int d = 0; d <= (j?9:D); d++){
-					dp[i+1][j||(d<D)][k||(d==4)||(d==9)] += dp[i][j][k]; 
+		int D = k[i]-'0';
+		for (int smaller = 0; smaller < 2; smaller++){
+			for (int j = 0; j < d; j++){
+				for (int digit = 0; digit <= (smaller?9:D); digit++){
+					dp[i+1][smaller||(digit<D)][(j+digit)%d] += dp[i][smaller][j];
+					dp[i+1][smaller||(digit<D)][(j+digit)%d] %= mod;
 				}
 			}
 		}
 	}
-
-	return dp[l][0][1] + dp[l][1][1];
-}
-
-int main()
-{
-	ll a,b;
-	cin>>a>>b;
-	cout<<f(b)-f(a-1)<<endl;
-
+	cout<<(dp[l][0][0] + dp[l][1][0]-1+mod)%mod<<endl;
 	return 0;
 }

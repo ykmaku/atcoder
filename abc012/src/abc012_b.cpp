@@ -27,8 +27,12 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-	string s;
-	cin>>s;
-	cout<<(s=="a"?"-1":"a")<<endl;
+	int n;
+	cin>>n;
+	int h = n/3600;
+	n %= 3600;
+	int m = n / 60;
+	n %= 60;
+	printf("%02d:%02d:%02d\n",h,m,n);
 	return 0;
 }

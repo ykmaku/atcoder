@@ -27,8 +27,8 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-	string s;
-	cin>>s;
-	cout<<(s=="a"?"-1":"a")<<endl;
+	int a,b;
+	cin>>a>>b;
+	cout<<b<<" "<<a<<endl;
 	return 0;
 }
