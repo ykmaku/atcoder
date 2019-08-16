@@ -16,6 +16,12 @@ e1,e2の並び
 
 >だったらe2,e1
 
+sort(
+        index.begin(),
+        index.end(),
+        [&](int x, int y){return vec[x] < vec[y];}
+    );
+
 //小さい順に並ぶよ
 
 struct edge
@@ -64,28 +70,6 @@ int main()
     
 }
 
-//パスカルの三角形
-lld C[MAXN][MAXN] = {0};  //C[n][k] == nCk
-
-void pascal(lld n)
-{
-	for(int i = 0; i <= n; i++)
-	{
-		for(int j = 0; j <= n; j++)
-		{
-			if (i == 0 || i < j)
-			{
-				C[i][j] = 0;
-			}else if (j == 0 || i == j)
-			{
-				C[i][j] = 1;
-			}else
-			{
-				C[i][j] = C[i-1][j-1] + C[i-1][j];
-			}
-		}
-	}
-}
 
 
 vector<int> v(N);

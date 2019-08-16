@@ -28,6 +28,8 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	int n;
+	cin>>n;
+	cout<<n%12+1<<endl;
 	return 0;
 }

@@ -28,6 +28,29 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	int n;
+	cin>>n;
+	set<int> ng;
+	rep(i,3){
+		int x;
+		cin>>x;
+		ng.insert(x);
+		if(x==n){
+			cout<<"NO"<<endl;
+			return 0;
+		}
+	}
+	bool flag = true;
+	rep(i,100){
+		if(ng.find(n-3)==ng.end()&&n-3>=0) n -= 3;
+		else if(ng.find(n-2)==ng.end() && n-2>=0) n -= 2;
+		else if(ng.find(n-1)==ng.end() && n-1>=0) n -= 1;
+		else flag = false;
+		if(n==0) break;
+	}
+	if(n!=0)flag = false;
+	
+	cout<<(flag?"YES":"NO")<<endl;
+	
 	return 0;
 }
