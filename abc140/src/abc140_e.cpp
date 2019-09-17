@@ -1,30 +1,14 @@
 #include <iostream>
-#include <string>
-#include <algorithm>
-#include <cstdio>
 #include <vector>
-#include <queue>
-#include <stack>
 #include <set>
-#include <map>
-#include <numeric>
-#include <cmath>
-#include <cassert>
+
 
 using namespace std;
 
 typedef long long int ll;
-typedef pair<int,int> P;
 
 #define rep(i,n) for(int i=0;i<(n);++i)
-#define all(x) x.begin(),x.end()
 
-const ll mod = 1e9+7;
-const ll INF = 1e9;
-
-ll gcd(ll a,ll b){return b?gcd(b,a%b):a;}
-int dx[4]={1,0,-1,0};
-int dy[4]={0,1,0,-1};
 
 int main()
 {
@@ -37,30 +21,29 @@ int main()
 	}
 	ll ans = 0;
 
-	set<ll> sl,sr;
-	sl.insert(0);
-	sr.insert(n+1);
+	multiset<ll> s;
+	s.insert(0);
+	s.insert(0);
+	s.insert(n+1);
+	s.insert(n+1);
 	for (ll now = n; now >= 1; now--){
-		ll x_r = *sr.lower_bound(pos[now]);
-		sr.erase(x_r);
-		sr.insert(n+1);
-		ll x_rr = *sr.lower_bound(x_r);
-		sr.insert(x_r);
+		auto it = s.lower_bound(pos[now]);
+		ll pos_r = *it;
 
-		ll x_l = *sl.lower_bound(-pos[now]);
-		sl.erase(x_l);
-		sl.insert(0);
-		ll x_ll = *sl.lower_bound(x_l);
-		sl.insert(x_l);
+		it++;
+		ll pos_rr = *it;
 
-		x_l *=-1;
-		x_ll *= -1;
+		it--;
+		it--;
+		ll pos_l = *it;
 
-		ans += now*(x_r-pos[now])*(x_l-x_ll);
-		ans += now*(x_rr-x_r)*(pos[now]-x_l);
+		it--;
+		ll pos_ll = *it;
 
-		sr.insert(pos[now]);
-		sl.insert(-1*pos[now]);
+		ans += now*(pos_r-pos[now])*(pos_l-pos_ll);
+		ans += now*(pos_rr-pos_r)*(pos[now]-pos_l);
+
+		s.insert(pos[now]);
 	}
 	cout<<ans<<endl;
 	

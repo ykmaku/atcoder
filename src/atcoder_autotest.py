@@ -225,8 +225,8 @@ def test(DIR,contest_name,problem_name):
 		output_file = "output_"+str(num)+".txt"
 
 		input = subprocess.run(["cat",input_file],stdout=subprocess.PIPE,cwd=test_dir)
-		output = subprocess.run(["cat",output_file],capture_output=True,cwd=test_dir)
-		answer = subprocess.run(["./"+problem_name],input=input.stdout,capture_output=True,cwd=src_dir)
+		output = subprocess.run(["cat",output_file],stdout=subprocess.PIPE,cwd=test_dir)
+		answer = subprocess.run(["./"+problem_name],input=input.stdout,stdout=subprocess.PIPE,cwd=src_dir)
 		path = os.path.join(test_dir,"answer_"+num+".txt")
 		with open(path,mode='w') as f:
 			f.write(answer.stdout.decode("utf8"))

@@ -102,5 +102,28 @@ struct dinic{
 int main()
 {
 
+	int n,g,e;
+	cin>>n>>g>>e;
+	vector<int> p(g);
+	rep(i,g)cin>>p[i];
+
+    dinic din(n+1);
+    rep(i,e){
+        int a,b;
+		int c=1;
+        cin>>a>>b;
+		// if(a>b){
+		// 	int tmp=b;
+		// 	b=a;
+		// 	a=tmp;
+		// }
+        din.add_edge(a,b,c);
+		if(a!=0) din.add_edge(b,a,c);
+    }
+	rep(i,g){
+		din.add_edge(p[i],n,1);
+	}
+
+    cout << din.max_flow(0,n,INF) << endl;
 	return 0;
 }
