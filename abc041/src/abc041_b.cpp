@@ -28,12 +28,8 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-	int n;
-	cin>>n;
-	vector<int> p(n);
-	rep(i,n) cin>>p[i],p[i]--;
-	int cnt=0;
-	rep(i,n)if(p[i]!=i)cnt++;
-	cout<<(cnt==2?"YES":"NO")<<endl;
+	ll a,b,c;
+	cin>>a>>b>>c;
+	cout<<a*b%mod*c %mod<<endl;
 	return 0;
 }

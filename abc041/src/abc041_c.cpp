@@ -30,10 +30,11 @@ int main()
 {
 	int n;
 	cin>>n;
-	vector<int> p(n);
-	rep(i,n) cin>>p[i],p[i]--;
-	int cnt=0;
-	rep(i,n)if(p[i]!=i)cnt++;
-	cout<<(cnt==2?"YES":"NO")<<endl;
+	vector<int> a(n),id(n);
+	rep(i,n)cin>>a[i];
+	iota(all(id),0);
+	sort(all(id),[&](int i,int j){return a[i]>a[j];});
+
+	rep(i,n)cout<<id[i]+1<<endl;
 	return 0;
 }

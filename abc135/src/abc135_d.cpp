@@ -30,48 +30,23 @@ int main()
 	string s;
 	cin>>s;
 	int n = s.size();
-	vector<vector<ll> > dp(n,vector<ll>(13,0LL));
-	vector<ll> power(n);
-	power[n-1] = 1;
-	for (int i = n-2; i >= 0; i--){
-		power[i] = 10*power[i+1];
-		power[i] %= 13;
-	}
 
-	for (int i = n-1; i >= 0; i--){
-		if(i==n-1){
-			if(s[i]=='?'){
-				for (int j = 0; j < 10; j++){
-					dp[i][j] = 1;
-				}
-			}else{
-				dp[i][s[i]-'0'] = 1;
+	vector<vector<ll>> dp(n+1,vector<ll>(13,0));
+
+	dp[0][0]=1;
+	for (int i = 0; i < n; i++){
+		int now = 0;
+		if(s[i]=='?') now=-1;
+		else now=s[i]-'0';
+
+		for (int digit = 0; digit < 10; digit++){
+			if(now!=-1 && now!=digit) continue;
+			for (int m = 0; m < 13; m++){
+				dp[i+1][(m*10+digit)%13] += dp[i][m];
+				dp[i+1][(m*10+digit)%13] %= mod;
 			}
-			continue;
-		}
-		if(s[i]=='?'){
-			for (ll j = 0; j < 10; j++){
-				ll pl = j*power[i];
-				pl %= mod;
-				for (int k = 0; k < 13; k++){
-					ll amari = (pl%13 + (ll)k)%13;
-					dp[i][amari] += dp[i+1][k];
-					dp[i][amari] %=mod;
-				}
-			}
-		}else{
-			ll j = s[i]-'0';
-			ll pl = j*power[i];
-			pl %= mod;
-			for (int k = 0; k < 13; k++){
-				ll amari = (pl%13 + (ll)k)%13;
-				dp[i][amari] += dp[i+1][k];
-				dp[i][amari] %=mod;
-			} 
 		}
 	}
-
-	cout<<dp[0][5]<<endl;
-
+	cout<<dp[n][5]<<endl;
 	return 0;
 }

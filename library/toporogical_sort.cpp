@@ -14,6 +14,7 @@
 using namespace std;
 
 typedef long long int ll;
+typedef pair<int,int> P;
 
 #define all(x) x.begin(),x.end()
 
@@ -21,7 +22,8 @@ const ll mod = 1e9+7;
 const ll INF = 1e9;
 const ll MAXN = 1e9;
 
-vector<int> toporogical_sort(const vector<vector<int> > g){
+
+P toporogical_sort(const vector<vector<int>> g){
 	int n = g.size();
 	vector<int> in_degree(n,0);
 	for(int i = 0; i < n; i++){
@@ -30,10 +32,10 @@ vector<int> toporogical_sort(const vector<vector<int> > g){
 		}
 	}
 
-	vector<int> res;
+	vector<int> res,length(n);
 	stack<int> S;
 	for(int i = 0; i < n; i++){
-		if(in_degree[i]==0) S.push(i);
+		if(in_degree[i]==0) S.push(i),length[i]=0;
 	}
 
 	while(!S.empty()){
@@ -42,11 +44,14 @@ vector<int> toporogical_sort(const vector<vector<int> > g){
 		res.push_back(p);
 		for(int i = 0; i < g[p].size(); i++){
 			in_degree[g[p][i]]--;
-			if(in_degree[g[p][i]]==0) S.push(g[p][i]);
+			if(in_degree[g[p][i]]==0) S.push(g[p][i]),length[g[p][i]]=length[p]+1;
 		}
 	}
 
-	return res;
+	//res.size()==nならばgはDAG
+	//resはトポロジカルソートされた頂点列
+	//*max_element(all(length))はgの最長パスの長さ
+	return P(res.size(),*max_element(all(length)));
 }
 
 int main()

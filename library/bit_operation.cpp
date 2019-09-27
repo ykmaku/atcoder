@@ -8,6 +8,7 @@
 #include <numeric>
 #include <cmath>
 
+
 using namespace std;
 
 typedef long long int ll;

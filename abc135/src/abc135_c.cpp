@@ -16,6 +16,7 @@ using namespace std;
 typedef long long int ll;
 typedef pair<int,int> P;
 
+#define rep(i,n) for(int i=0;i<(n);++i)
 #define all(x) x.begin(),x.end()
 
 const ll mod = 1e9+7;
@@ -30,14 +31,11 @@ int main()
 	int n;
 	cin>>n;
 	vector<ll> a(n+1),b(n);
-	for (int i = 0; i <= n; i++){
-		cin>>a[i];
-	}
-	for (int i = 0; i < n; i++){
-		cin>>b[i];
-	}
+	rep(i,n+1)cin>>a[i];
+	rep(i,n)cin>>b[i];
+
 	ll ans = 0;
-	for (int i = 0; i < n; i++){
+	rep(i,n){
 		ans += min(a[i]+a[i+1],b[i]);
 		a[i+1] -= max(b[i]-a[i],0LL);
 		a[i+1] = max(0LL,a[i+1]);

@@ -58,11 +58,12 @@ def get_tests(dir,url):
 	# 	print("log in!")
 	# else:
 	# 	print("failed...")
-		
+	
 
 	page = requests.get(url)
 	soup = BeautifulSoup(page.content, 'html.parser')
-
+	
+	#TODO: divの場合とsectionの場合がある?古いものはdivぽい
 	for div in soup.find_all('div'):
 		h3s = div.find_all("h3")
 		for h3 in h3s:

@@ -28,12 +28,9 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-	int n;
-	cin>>n;
-	vector<int> p(n);
-	rep(i,n) cin>>p[i],p[i]--;
-	int cnt=0;
-	rep(i,n)if(p[i]!=i)cnt++;
-	cout<<(cnt==2?"YES":"NO")<<endl;
+	string s;
+	int i;
+	cin>>s>>i;
+	cout<<s[i-1]<<endl;
 	return 0;
 }
