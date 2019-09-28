@@ -11,8 +11,6 @@
 #include <cmath>
 #include <cassert>
 #include <iomanip>
-#include <bitset>
-
 
 using namespace std;
 
@@ -31,6 +29,21 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
+	ll n,k;
+	cin>>n>>k;
+
+	double ans = 0;
+
+	//kが1回現れる
+	ans += 6*(k-1)*(n-k);
+
+	//kが2回現れる
+	ans += 3*(n-1);
+
+	//kが3回
+	ans += 1;
+
+	cout<<setprecision(15) <<ans/pow(n,3)<<endl;
 
 	return 0;
 }

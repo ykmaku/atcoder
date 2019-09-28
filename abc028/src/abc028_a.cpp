@@ -9,7 +9,7 @@
 #include <map>
 #include <numeric>
 #include <cmath>
-#include <bitset>
+#include <cassert>
 
 using namespace std;
 
@@ -17,8 +17,7 @@ typedef long long int ll;
 typedef pair<int,int> P;
 
 #define rep(i,n) for(int i=0;i<(n);++i)
-#define all(x) x.begin(),x.end()int s = 0;
-
+#define all(x) x.begin(),x.end()
 
 const ll mod = 1e9+7;
 const ll INF = 1e9;
@@ -29,8 +28,13 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-	int s = 3;
-	cout<< "s = "<<bitset<8>(s)<<endl;
-	rep(i,5)cout<<bitset<8>(i)<<" "<<bitset<8>(s&(1<<i))<<" "<<(s&(1<<i)==0?"true":"false")<<endl;
+	int n;
+	cin>>n;
+	string ans;
+	if(n<=59)ans="Bad";
+	else if(n<=89)ans="Good";
+	else if(n<=99)ans="Great";
+	else ans="Perfect";
+	cout<<ans<<endl;
 	return 0;
 }

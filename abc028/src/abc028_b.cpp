@@ -10,9 +10,6 @@
 #include <numeric>
 #include <cmath>
 #include <cassert>
-#include <iomanip>
-#include <bitset>
-
 
 using namespace std;
 
@@ -31,6 +28,13 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	string s;
+	cin>>s;
+	int ans[6]={};
+	rep(i,s.size()){
+		ans[s[i]-'A']++;
+	}
+	rep(i,6)cout<<ans[i]<<(i==5?"":" ");
+	cout<<endl;
 	return 0;
 }

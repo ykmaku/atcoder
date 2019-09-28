@@ -10,9 +10,6 @@
 #include <numeric>
 #include <cmath>
 #include <cassert>
-#include <iomanip>
-#include <bitset>
-
 
 using namespace std;
 
@@ -31,6 +28,20 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
+	int a[5]={};
+	rep(i,5)cin>>a[i];
+	vector<int> v;
 
+	for (int i = 0; i < 5; i++){
+		for (int j = i+1; j < 5; j++){
+			for (int k = j+1; k < 5; k++){
+				int x = a[i]+a[j]+a[k];
+				v.push_back(x);
+			}
+		}
+	}
+	sort(all(v));
+	reverse(all(v));
+	cout<<v[2]<<endl;
 	return 0;
 }
