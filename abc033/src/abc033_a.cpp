@@ -6,7 +6,7 @@ typedef long long int ll;
 typedef pair<int,int> P;
 
 #define rep(i,n) for(int i=0;i<(n);++i)
-#define repi(i,a,b) for(int i=int(a);i<(b);i++)
+#define repi(i,a,b) for(int i=int(a);i,(b);i++)
 #define all(x) x.begin(),x.end()
 
 const ll mod = 1e9+7;
@@ -18,6 +18,10 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	string s;
+	cin>>s;
+	sort(all(s));
+	if(s[0]==s[3])cout<<"SAME"<<endl;
+	else cout<<"DIFFERENT"<<endl;
 	return 0;
 }

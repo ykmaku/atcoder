@@ -56,7 +56,6 @@ int main()
 		rep(j,(1<<n)) dp[j][i] = dp[j][i-1];
 		rep(j,(1<<n)){
 			dp[s|j][i] = min(dp[s|j][i], dp[j][i-1]+key[i-1].first);
-			// cout<<dp[s|j][i]<<endl;
 		}
 	}
 
