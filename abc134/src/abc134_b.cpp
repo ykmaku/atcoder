@@ -1,21 +1,12 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <cstdio>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <set>
-#include <map>
-#include <numeric>
-#include <cmath>
-#include <cassert>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 typedef long long int ll;
 typedef pair<int,int> P;
 
+#define rep(i,n) for(int i=0;i<(n);++i)
+#define repi(i,a,b) for(int i=int(a);i<(b);i++)
 #define all(x) x.begin(),x.end()
 
 const ll mod = 1e9+7;
@@ -29,6 +20,7 @@ int main()
 {
 	int n,d;
 	cin>>n>>d;
-	cout<<ceil((double)n/(2*d+1))<<endl;
+	d=2*d+1;
+	cout<<(n+d-1)/d<<endl;
 	return 0;
 }

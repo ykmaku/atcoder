@@ -1,21 +1,12 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <cstdio>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <set>
-#include <map>
-#include <numeric>
-#include <cmath>
-#include <cassert>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 typedef long long int ll;
 typedef pair<int,int> P;
 
+#define rep(i,n) for(int i=0;i<(n);++i)
+#define repi(i,a,b) for(int i=int(a);i<(b);i++)
 #define all(x) x.begin(),x.end()
 
 const ll mod = 1e9+7;
@@ -30,25 +21,14 @@ int main()
 	int n;
 	cin>>n;
 	vector<int> a(n);
-	for (int i = 0; i < n; i++){
-		cin>>a[i];
+	rep(i,n)cin>>a[i];
+	P first=P(-1,-1),second=P(-1,-1);
+	rep(i,n){
+		if(first.first<a[i]) first=P(a[i],i);
 	}
-
-	int x = *max_element(all(a));
-	int second = 0;
-	bool flag = false;
-	for (int i = 0; i < n; i++){
-		if(a[i] == x){
-			if(!flag) flag = true;
-			else second = x;
-		}else{
-			second = max(a[i],second);
-		}
+	rep(i,n){
+		if(second.first<a[i]&&i!=first.second) second=P(a[i],i);
 	}
-	for (int i = 0; i < n; i++){
-		if(a[i] == x) cout << second<<endl;
-		else cout << x << endl;
-	}
-
+	rep(i,n) cout<<(i!=first.second?first.first:second.first)<<endl;
 	return 0;
 }

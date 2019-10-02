@@ -1,21 +1,12 @@
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <cstdio>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <set>
-#include <map>
-#include <numeric>
-#include <cmath>
-#include <cassert>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 typedef long long int ll;
 typedef pair<int,int> P;
 
+#define rep(i,n) for(int i=0;i<(n);++i)
+#define repi(i,a,b) for(int i=int(a);i<(b);i++)
 #define all(x) x.begin(),x.end()
 
 const ll mod = 1e9+7;
@@ -29,38 +20,22 @@ int main()
 {
 	int n;
 	cin>>n;
-	vector<int> a(n);
-	for (int i = 0; i < n; i++){
-		cin>>a[i];
-	}
+	vector<int> a(n+1);
+	repi(i,1,n+1)cin>>a[i];
 
-	vector<int> ball(n,0);
-	for(int i = n-1; i >= 0; i--){
-		if(ball[i]%2!=a[i]){
-			ball[i]=1;
-			ball[0]++;
-			for(int j = 2; j * j <= i+1; j++){
-				if ((i+1) % j==0){
-					ball[j-1]++;
-					if (j != (i+1) / j){
-						ball[(i+1)/j-1]++;
-					}
-				}
-			}
+	vector<int> b(n+1,0);
+	for (int i = n; i >=1; i--){
+		int cnt=0;
+		for (int j = i+i; j <= n; j+=i){
+			cnt+=b[j];
+		}
+		if(cnt%2==0){
+			if(a[i]==1) b[i]=1;
 		}else{
-			ball[i] = 0;
+			if(a[i]==0) b[i]=1;
 		}
 	}
-	vector<int> ans;
-	for (int i = 0; i < n; i++){
-		if(ball[i]>0){
-			ans.push_back(i+1);
-		}
-	}
-	// cout<<endl;
-	cout<<ans.size()<<endl;
-	for(auto x: ans){
-		cout<<x<<endl;
-	}
+	cout<<accumulate(all(b),0)<<endl;
+	repi(i,1,n+1)if(b[i]>0)cout<<i<<endl;
 	return 0;
 }
