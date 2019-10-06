@@ -22,7 +22,7 @@ const ll mod = 1e9+7;
 const ll INF = 1e9;
 const ll MAXN = 1e9;
 
-
+// 重みなしグラフ
 P toporogical_sort(const vector<vector<int>> g){
 	int n = g.size();
 	vector<int> in_degree(n,0);

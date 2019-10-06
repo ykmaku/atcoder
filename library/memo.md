@@ -3,3 +3,4 @@
 
 ## ほしいライブラリ
 - longest_path in DAG
+- 重み付き最長パス in DAG

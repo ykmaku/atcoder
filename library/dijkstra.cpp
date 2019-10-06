@@ -29,7 +29,7 @@ struct edge{
 
 class dijkstra{
 public:
-	vector<vector<edge> > E;
+	vector<vector<edge>> E;
 	vector<int> dist;
 	int start;
 	dijkstra(int n): E(n),dist(n){}
@@ -41,7 +41,7 @@ public:
 	}
 
 	void shortest_path(){
-		priority_queue<P,vector<P>,greater<P> > que;
+		priority_queue<P,vector<P>,greater<P>> que;
 		dist.assign(dist.size(),INF);
 
 		dist[start] = 0;
@@ -65,6 +65,32 @@ public:
 
 
 };
+
+vector<ll> dijkstra(vector<vector<P>> &g,int r){
+	priority_queue<P,vector<P>,greater<P>> que;
+
+	int n = g.size();
+	vector<ll> dist(n,INF);
+	dist[r]=0;
+	que.push(P(dist[r],r));
+	while(!que.empty()){
+		ll dist_from=que.top().first;
+		ll node_from=que.top().second;
+		que.pop();
+
+		if(dist[node_from]<dist_from) continue;
+		for(P p: g[node_from]){
+			ll w=p.second;
+			int node_to=p.first;
+			if(dist[node_to]>dist_from+w){
+				dist[node_to]=dist_from+w;
+				que.push(P(dist[node_to],node_to));
+			}
+		}
+	}
+
+	return dist;
+}
 
 int main()
 {
