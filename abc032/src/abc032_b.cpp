@@ -18,6 +18,15 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	string s;
+	int k;
+	cin>>s>>k;
+	int n=s.size();
+	set<string> ss;
+	rep(i,n-k+1){
+		string t = s.substr(i,k);
+		ss.insert(t);
+	}
+	cout<<ss.size()<<endl;
 	return 0;
 }

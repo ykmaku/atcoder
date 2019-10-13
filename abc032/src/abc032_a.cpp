@@ -18,6 +18,14 @@ int dy[4]={0,1,0,-1};
 
 int main()
 {
-
+	int a,b,n;
+	cin>>a>>b>>n;
+	while(1){
+		if(n%a==0&&n%b==0){
+			cout<<n<<endl;
+			break;
+		}
+		n++;
+	}
 	return 0;
 }
