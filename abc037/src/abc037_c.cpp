@@ -15,12 +15,22 @@ const ll INF = 1e9;
 ll gcd(ll a,ll b){return b?gcd(b,a%b):a;}
 int dx[4]={1,0,-1,0};
 int dy[4]={0,1,0,-1};
-bool valid(int lx,int ux,int ly,int uy,int x,int y){
-	return lx<=x&&x<ux&&ly<=y&&y<uy; 
-}
 
 int main()
 {
+	int n,k;
+	cin>>n>>k;
+	vector<ll> a(n);
+	rep(i,n)cin>>a[i];
 
+
+	ll ans=0;
+	int cnt=1;
+	rep(i,n){
+		ans+=cnt*a[i];
+		if(i<k-1)cnt++;
+		if(i>=n-k)cnt--;
+	}
+	cout<<ans<<endl;
 	return 0;
 }

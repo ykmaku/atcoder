@@ -15,12 +15,11 @@ const ll INF = 1e9;
 ll gcd(ll a,ll b){return b?gcd(b,a%b):a;}
 int dx[4]={1,0,-1,0};
 int dy[4]={0,1,0,-1};
-bool valid(int lx,int ux,int ly,int uy,int x,int y){
-	return lx<=x&&x<ux&&ly<=y&&y<uy; 
-}
 
 int main()
 {
-
+	int a,b,c;
+	cin>>a>>b>>c;
+	cout<<c/min(a,b)<<endl;
 	return 0;
 }
