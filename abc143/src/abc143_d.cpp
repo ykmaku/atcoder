@@ -7,7 +7,6 @@ typedef pair<int,int> P;
 
 #define rep(i,n) for(int i=0;i<(n);++i)
 #define repi(i,a,b) for(int i=int(a);i<(b);i++)
-#define repr(i,b,a) for(int i=int(b);i>=(a);i--)
 #define all(x) x.begin(),x.end()
 
 const ll mod = 1e9+7;
@@ -19,15 +18,25 @@ int dy[4]={0,1,0,-1};
 bool valid(int lx,int ux,int ly,int uy,int x,int y){
 	return lx<=x&&x<ux&&ly<=y&&y<uy; 
 }
-ll power(ll x,ll p){
-	if(p==0)return 1;
-	ll res=power(x*x%mod,p/2);
-	if(p%2==1)res=res*x%mod;
-	return res;
-}
 
 int main()
 {
+	int n;
+	cin>>n;
+	vector<int> l(n);
+	rep(i,n)cin>>l[i];
+	sort(all(l));
+
+	ll ans=0;
+	for (int i = n-1; i >= 0; i--){
+		for (int j = i-1; j >= 0; j--){
+			int e = l[i]-l[j];
+			int pos=upper_bound(all(l),e)-l.begin();
+
+			ans += max(j-pos,0);
+		}
+	}
+	cout<<ans<<endl;
 
 	return 0;
 }

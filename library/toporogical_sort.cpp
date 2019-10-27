@@ -51,7 +51,20 @@ P toporogical_sort(const vector<vector<int>> g){
 	//res.size()==nならばgはDAG
 	//resはトポロジカルソートされた頂点列
 	//*max_element(all(length))はgの最長パスの長さ
-	return P(res.size(),*max_element(all(length)));
+	if(res.empty() || res.size()!=n){
+		return P(-1,-1);
+	}else{
+		vector<int> dp(n,0);
+		rep(i,n){
+			int p = res[i];
+			rep(j,g[p].size()){
+				dp[g[p][j]] = max(dp[g[p][j]],dp[p]+1);
+			}
+		}
+
+		return P(n,*max_element(all(dp)));
+	}
+
 }
 
 int main()

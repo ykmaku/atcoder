@@ -28,6 +28,16 @@ ll power(ll x,ll p){
 
 int main()
 {
+	int r,c,d;
+	cin>>r>>c>>d;
+	vector<vector<int>> a(r,vector<int>(c)),dist(r,vector<int>(c));
+	rep(i,r)rep(j,c)cin>>a[i][j],dist[i][j]=i+j;
 
+	int ans=0;
+	rep(i,r)rep(j,c){
+		if(d%2==0&&dist[i][j]%2==0&&dist[i][j]<=d)ans=max(ans,a[i][j]);
+		else if(d%2!=0&&dist[i][j]%2!=0&&dist[i][j]<=d)ans=max(ans,a[i][j]);
+	}
+	cout<<ans<<endl;
 	return 0;
 }
