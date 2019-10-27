@@ -26,8 +26,51 @@ ll power(ll x,ll p){
 	return res;
 }
 
+double calc(int target,vector<vector<int>> &g){
+	int n=g.size();
+	vector<double> dp(n,0);
+	dp[n-1]=0;
+	repr(i,n-2,0){
+		double sum=0;
+		double max_=0;
+
+		for(auto x:g[i]){
+			sum+=dp[x];
+			max_=max(max_,dp[x]);
+		}
+
+		double size=g[i].size();
+		if(i==target){
+			sum-=max_;
+			size--;
+		}
+
+		dp[i]=sum/size+1;
+	}
+
+	return dp[0];
+}
+
 int main()
 {
+	int n,m;
+	cin>>n>>m;
+	vector<vector<int>> g(n,vector<int>());
+
+	rep(i,m){
+		int a,b;
+		cin>>a>>b;
+		a--,b--;
+		g[a].push_back(b);
+	}
+
+	double ans=INF;
+
+
+	rep(i,n){
+		ans=min(ans,calc(i,g));
+	}
+	cout<<setprecision(10)<<ans<<endl;
 
 	return 0;
 }

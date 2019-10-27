@@ -26,8 +26,45 @@ ll power(ll x,ll p){
 	return res;
 }
 
+bool hantei(vector<ll> &a,vector<ll> &f,ll k,ll score){
+	ll n = a.size();
+	ll cnt=0;
+	rep(i,n){
+		cnt += max(0LL,a[i]-(score)/f[i]);
+	}
+
+	return cnt<=k;
+}
+
 int main()
 {
+	ll n,k;
+	cin>>n>>k;
+	vector<ll> a(n),f(n);
+	rep(i,n)cin>>a[i];
+	rep(i,n)cin>>f[i];
+
+	if(accumulate(all(a),0LL)<=k){
+		cout<<0<<endl;
+		return 0;
+	}
+
+	sort(all(a));
+	sort(all(f));
+	reverse(all(f));
+
+	ll low=0,high=1e12;
+
+	while(low+1<high){
+		ll mid=(low+high)/2;
+		if(hantei(a,f,k,mid)){
+			high=mid;
+		}else{
+			low=mid;
+		}
+	}
+
+	cout<<(hantei(a,f,k,low)?low:high)<<endl;
 
 	return 0;
 }

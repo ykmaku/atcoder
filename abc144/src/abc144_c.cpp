@@ -26,8 +26,29 @@ ll power(ll x,ll p){
 	return res;
 }
 
+
+
 int main()
 {
+	ll n;
+	cin>>n;
 
+	ll a=1,b=1;
+	int parity=1;
+	ll res=n;
+	ll ans=INF*INF;
+	for (ll i = 1; i*i <= n; i++){
+		// while(res%i==0){
+		// 	if(parity>0)a*=i;
+		// 	else b*=i;
+		// 	res/=i;
+		// 	parity*=-1;
+		// }
+		if(n%i==0)ans=min(ans,i+n/i-2);
+	}
+	// if(parity>0)a*=res;
+	// else b*=res;
+	
+	cout<<ans<<endl;
 	return 0;
 }

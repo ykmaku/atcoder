@@ -26,8 +26,37 @@ ll power(ll x,ll p){
 	return res;
 }
 
+double f1(double a,double b,double alpha,double x){
+	return a*pow(b,2)*tan(M_PI/2-alpha)-2*x;
+}
+
+double f2(double a,double alpha,double x){
+	return pow(a,3)*tan(alpha)-2*x;
+}
+
 int main()
 {
+	double a,b,x;
+	cin>>a>>b>>x;
 
+	if(2*x<=a*a*b){
+		// cout<<"lower case"<<endl;
+		double low=0,high=M_PI/2;
+		while(abs(f1(a,b,high,x))>1e-8){
+			double mid=(low+high)/2;
+			if(f1(a,b,mid,x)<0)high=mid;
+			else low=mid;
+		}
+		cout<<setprecision(12)<<high*180/M_PI<<endl;
+	}else{
+		double low=0,high=M_PI/2;
+		x=a*a*b-x;
+		while(abs(f2(a,low,x))>1e-8){
+			double mid=(low+high)/2;
+			if(f2(a,mid,x)<0)low=mid;
+			else high=mid;
+		}
+		cout<<setprecision(12)<<low*180/M_PI<<endl;
+	}
 	return 0;
 }

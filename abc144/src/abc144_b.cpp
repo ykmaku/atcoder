@@ -28,6 +28,14 @@ ll power(ll x,ll p){
 
 int main()
 {
-
+	int n;
+	cin>>n;
+	repi(i,1,10)repi(j,1,10){
+		if(i*j==n){
+			cout<<"Yes"<<endl;
+			return 0;
+		}
+	}
+	cout<<"No"<<endl;
 	return 0;
 }
