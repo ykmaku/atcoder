@@ -28,21 +28,26 @@ ll power(ll x,ll p){
 
 int main()
 {
-	int n,c;
-	cin>>n>>c;
-	vector<int> a(n);
-	rep(i,n)cin>>a[i],a[i]--;
+	int n;
+	cin>>n;
+	vector<int> h(n);
+	rep(i,n)cin>>h[i];
 
-	int ans=INF;
-	rep(color1,10){
-		rep(color2,10){
-			if(color1==color2)continue;
-			int res=0;
-			rep(i,n){
-				if(i%2==0&&a[i]!=color1)res+=c;
-				if(i%2!=0&&a[i]!=color2)res+=c;
-			}
-			ans=min(ans,res);
+	int left=0,right=0;
+	int ans=0;
+	int parity=1;
+	while(right<n){
+		if(right+1==n){
+			ans=max(ans,right-left+1);
+			break;
+		}
+		if(h[right]<h[right+1]&&parity>0)right++;
+		else if(h[right]>h[right+1]&&parity>0)right++,parity*=-1;
+		else if(h[right]>h[right+1]&&parity<0)right++;
+		else if((h[right]<h[right+1]&&parity<0)){
+			ans=max(ans,right-left+1);
+			left=right;
+			parity*=-1;
 		}
 	}
 	cout<<ans<<endl;

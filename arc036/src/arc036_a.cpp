@@ -28,23 +28,17 @@ ll power(ll x,ll p){
 
 int main()
 {
-	int n,c;
-	cin>>n>>c;
-	vector<int> a(n);
-	rep(i,n)cin>>a[i],a[i]--;
-
-	int ans=INF;
-	rep(color1,10){
-		rep(color2,10){
-			if(color1==color2)continue;
-			int res=0;
-			rep(i,n){
-				if(i%2==0&&a[i]!=color1)res+=c;
-				if(i%2!=0&&a[i]!=color2)res+=c;
-			}
-			ans=min(ans,res);
+	int n,k;
+	cin>>n>>k;
+	vector<int> t(n);
+	rep(i,n)cin>>t[i];
+	repi(i,2,n){
+		int suimin=t[i]+t[i-1]+t[i-2];
+		if(suimin<k){
+			cout<<i+1<<endl;
+			return 0;
 		}
 	}
-	cout<<ans<<endl;
+	cout<<-1<<endl;
 	return 0;
 }

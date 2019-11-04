@@ -28,6 +28,9 @@ ll power(ll x,ll p){
 
 int main()
 {
-
+	int a,b;
+	cin>>a>>b;
+	if(abs(a)==abs(b))cout<<"Draw"<<endl;
+	else cout<<(abs(a)>abs(b)?"Ant":"Bug")<<endl;
 	return 0;
 }

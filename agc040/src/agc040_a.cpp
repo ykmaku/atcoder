@@ -28,23 +28,21 @@ ll power(ll x,ll p){
 
 int main()
 {
-	int n,c;
-	cin>>n>>c;
-	vector<int> a(n);
-	rep(i,n)cin>>a[i],a[i]--;
-
-	int ans=INF;
-	rep(color1,10){
-		rep(color2,10){
-			if(color1==color2)continue;
-			int res=0;
-			rep(i,n){
-				if(i%2==0&&a[i]!=color1)res+=c;
-				if(i%2!=0&&a[i]!=color2)res+=c;
-			}
-			ans=min(ans,res);
-		}
+	string s;
+	cin>>s;
+	int n=s.size()+1;
+	vector<ll> a(n,0);
+	
+	rep(i,n-1){
+		if(s[i]=='<')a[i+1]=max(a[i+1],a[i]+1);
 	}
-	cout<<ans<<endl;
+	repr(i,n-1,1){
+		if(s[i-1]=='>')a[i-1]=max(a[i-1],a[i]+1);
+	}
+
+	// for(auto x:a)cout<<x<<" ";
+	// cout<<endl;
+
+	cout<<accumulate(all(a),0LL)<<endl;
 	return 0;
 }
