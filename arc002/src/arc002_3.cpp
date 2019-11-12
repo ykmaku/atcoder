@@ -26,8 +26,39 @@ ll power(ll x,ll p){
 	return res;
 }
 
+int len(string s,string l,string r){
+	string t;
+	int i=0;
+	while(i<s.size()){
+		if(i<s.size()-1){
+			if(s.substr(i,2)==l) t+='L',i++;
+			else if(s.substr(i,2)==r)t+='R',i++;
+			else t+=s[i];
+		}else t+=s[i];
+		i++;
+	}
+	// cout<<t<<endl;
+
+	return t.size();
+}
+
 int main()
 {
+	int n;
+	string s;
+	cin>>n>>s;
 
+	int ans=s.size();
+	char d[]={'A','B','X','Y'};
+	rep(i,4)rep(j,4)rep(k,4)rep(l,4){
+		string L;
+		string R;
+		L+=d[i];
+		L+=d[j];
+		R+=d[k];
+		R+=d[l];
+		ans=min(ans,len(s,L,R));
+	}
+	cout<<ans<<endl;
 	return 0;
 }

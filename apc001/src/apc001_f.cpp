@@ -28,12 +28,6 @@ ll power(ll x,ll p){
 
 int main()
 {
-	int y;
-	cin>>y;
-	bool ans=false;
-	if(y%400==0)ans=true;
-	else if(y%100==0)ans=false;
-	else if(y%4==0)ans=true;
-	cout<<(ans?"YES":"NO")<<endl;
+
 	return 0;
 }

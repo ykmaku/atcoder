@@ -26,8 +26,84 @@ ll power(ll x,ll p){
 	return res;
 }
 
+bool uruu(int y){
+	bool ch = false;
+ 
+	if (y % 400 == 0) ch = !ch;
+	else if (y % 100 != 0 && y % 4 == 0)ch = !ch;
+	return ch;
+}
+
 int main()
 {
+	int y,m,d;
+	char d1,d2;
+	cin >> y >> d1 >> m >> d2 >> d;
+
+	while(y % (m*d) != 0)
+	{
+		if (uruu(y)){
+			if (m == 2){
+				if (d == 29){
+					d = 1;
+					m = 3;
+				}else{
+					d++;
+				}
+			}else if (m == 4 || m == 6 || m == 9 || m == 11){
+				if (d == 30){
+					d = 1;
+					m++;
+				}else{
+					d++;
+				}
+			}else{
+				if (d == 31){
+					if (m == 12){
+						y++;
+						d = 1;
+						m = 1;
+					}else{
+						d = 1;
+						m++;
+					}
+				}else{
+					d++;
+				}
+			}
+		}else{
+			if (m == 2){
+				if (d == 28){
+					d = 1;
+					m = 3;
+				}else{
+					d++;
+				}
+			}else if (m == 4 || m == 6 || m == 9 || m == 11){
+				if (d == 30){
+					d = 1;
+					m++;
+				}else{
+					d++;
+				}
+			}else{
+				if (d == 31){
+					if (m == 12){
+						y++;
+						d = 1;
+						m = 1;
+					}else{
+						d = 1;
+						m++;
+					}
+				}else{
+					d++;
+				}
+			}
+		}
+	}
+
+	printf("%d/%02d/%02d\n",y,m,d);
 
 	return 0;
 }
