@@ -28,8 +28,8 @@ ll power(ll x,ll p){
 
 int main()
 {
-	int x,y,k;
-	cin>>x>>y>>k;
-	cout<<x+y-abs(k-y)<<endl;;
+	int n,k;
+	cin>>n>>k;
+	cout<<(k<=n/2?"YES":"NO")<<endl;
 	return 0;
 }

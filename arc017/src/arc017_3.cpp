@@ -28,8 +28,37 @@ ll power(ll x,ll p){
 
 int main()
 {
-	int x,y,k;
-	cin>>x>>y>>k;
-	cout<<x+y-abs(k-y)<<endl;;
+	int n,x;
+	cin>>n>>x;
+	vector<int> w(n);
+	rep(i,n)cin>>w[i];
+	vector<int> a1(n/2),a2(n-n/2);
+	copy(w.begin(),w.begin()+n/2,a1.begin());
+	copy(w.begin()+n/2,w.end(),a2.begin());
+
+	map<int,int> half1,half2;
+	int m1=a1.size(),m2=a2.size();
+	rep(bit,(1<<m1)){
+		int res=0;
+		rep(j,m1){
+			if(bit&(1<<j)) res+=a1[j];
+		}
+		half1[res]+=1;
+	}
+	rep(bit,(1<<m2)){
+		int res=0;
+		rep(j,m2){
+			if(bit&(1<<j)) res+=a2[j];
+		}
+		half2[res]+=1;
+	}
+
+	int ans=0;
+	for(auto p:half1){
+		if(half2.find(x-p.first)!=half2.end())ans+=half2[x-p.first]*p.second;
+	}
+
+	cout<<ans<<endl;
+
 	return 0;
 }

@@ -28,6 +28,33 @@ ll power(ll x,ll p){
 
 int main()
 {
+	int n,m;
+	cin>>n>>m;
+	vector<vector<int>> b(n,vector<int>(m,0)),a(n,vector<int>(m,0));
+	rep(i,n){
+		string s;
+		cin>>s;
+		rep(j,m){
+			b[i][j]=s[j]-'0';
+		}
+	}
+
+	repi(i,1,n-1){
+		repi(j,1,m-1){
+			int min_value=1000;
+			rep(k,4)min_value=min(min_value,b[i+dx[k]][j+dy[k]]);
+
+			if(min_value>0){
+				rep(k,4)b[i+dx[k]][j+dy[k]]-=min_value;
+				a[i][j]+=min_value;
+			}
+		}
+	}
+
+	rep(i,n){
+		rep(j,m)cout<<a[i][j];
+		cout<<endl;
+	}
 
 	return 0;
 }

@@ -28,8 +28,21 @@ ll power(ll x,ll p){
 
 int main()
 {
-	int x,y,k;
-	cin>>x>>y>>k;
-	cout<<x+y-abs(k-y)<<endl;;
+	int n,k;
+	cin>>n>>k;
+	vector<int> a(n);
+	rep(i,n)cin>>a[i];
+	int left=0,right=0;
+	int ans=0;
+	while(left<n-k+1){
+		if(right-left+1==k){
+			ans++;
+			left++;
+		}else{
+			if(a[right+1]>a[right])right++;
+			else right++,left=right;
+		}
+	}
+	cout<<ans<<endl;
 	return 0;
 }
