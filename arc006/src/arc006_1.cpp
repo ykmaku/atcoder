@@ -26,39 +26,22 @@ ll power(ll x,ll p){
 	return res;
 }
 
-bool dfs(int r,vector<vector<int>> &g, vector<int> &used, vector<int> &togo,vector<int> &h){
-	used[r]=1;
-	if(h[r]==1)togo[r]=1;
-	for(auto x:g[r]){
-		if(used[x]<0&&dfs(x,g,used,togo,h)){
-			togo[r]=1;
-		}
-	}
-	return togo[r]>0;
-}
-
 int main()
 {
-	int n,x;
-	cin>>n>>x;
-	x--;
-	vector<int> h(n);
-	rep(i,n)cin>>h[i];
-	vector<vector<int>> g(n,vector<int>());
-	rep(i,n-1){
-		int a,b;
-		cin>>a>>b;
-		a--;b--;
-		g[a].push_back(b);
-		g[b].push_back(a);
-	}
-	vector<int> used(n,-1),depth(n,0),togo(n,0);
-
-	dfs(x,g,used,togo,h);
-	int num=accumulate(all(togo),0);
-	if(num==0)num=1;
-
-	cout<<2*(num-1)<<endl;
-
+	int e[6] = {}, b, l[6] = {};
+	rep(i,6)cin>>e[i];
+	cin >> b;
+	rep(i,6)cin>>l[i]; 
+	int acc[6] = {0};	
+	rep(i,6)rep(j,6)if(e[i]==l[j])acc[i]=1;
+ 
+	int sum = accumulate(acc,acc+6,0);
+	if (sum == 6)cout<<1<<endl;
+	else if (sum == 5){
+		rep(i,6)if(l[i]==b){cout<<2<<endl;continue;}
+		cout<<3<<endl;
+	}else if (sum == 4)cout<<4<<endl;
+	else if (sum == 3)cout<<5<<endl;
+	else cout<<6<<endl;
 	return 0;
 }
