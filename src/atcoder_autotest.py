@@ -71,10 +71,12 @@ def get_tests(dir,url):
 			# TODO: 改行関係を何とかするabc001など
 			if "入力例" in h3.text:
 				s = h3.text
+				print(h3.text)
 				n = re.search("\d(?![>])",s).group()
 				x = div.find('pre').get_text()
 				# x = re.sub("^[\r\n]","",x)
 				x = str(x)
+				print(x)
 				# import pdb; pdb.set_trace()
 				# x = x.rstrip('\r\n')
 				file_name = "input_"+str(n)+".txt"

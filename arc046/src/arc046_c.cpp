@@ -28,37 +28,6 @@ ll power(ll x,ll p){
 
 int main()
 {
-	int n,l;
-	cin>>n>>l;
-	// cin.ignore();
-	vector<string> s(l+2);
-	rep(i,l+2){
-		getline(cin,s[i]);
-		// cout<<s[i]<<endl;
-	}
 
-	int pos=-1;
-	rep(i,2*n-1){
-		if(s[l+1][i]=='o'){
-			pos=i;
-			break;
-		}
-	}
-	int d=l;
-	int ans=pos/2;
-	while(d>=0){
-		if(pos-2>=0 && s[d][pos-1]=='-'){
-			pos-=2;
-			ans--;
-			d--;
-		}else if(pos+2<=2*n-1 && s[d][pos+1]=='-'){
-			pos+=2;
-			ans++;
-			d--;
-		}else{
-			d--;
-		}
-	}
-	cout<<ans+1<<endl;
 	return 0;
 }

@@ -26,39 +26,27 @@ ll power(ll x,ll p){
 	return res;
 }
 
+bool is_zorome(int x){
+	int num=x%10;
+	while(x>0){
+		if(x%10!=num)return false;
+		x/=10;
+	}
+	return true;
+}
+
 int main()
 {
-	int n,l;
-	cin>>n>>l;
-	// cin.ignore();
-	vector<string> s(l+2);
-	rep(i,l+2){
-		getline(cin,s[i]);
-		// cout<<s[i]<<endl;
+	int n;
+	cin>>n;
+	int cnt=0;
+	for (int i = 1;; i++){
+		if(is_zorome(i))cnt++;
+		if(cnt==n){
+			cout<<i<<endl;
+			return 0;
+		}
 	}
 
-	int pos=-1;
-	rep(i,2*n-1){
-		if(s[l+1][i]=='o'){
-			pos=i;
-			break;
-		}
-	}
-	int d=l;
-	int ans=pos/2;
-	while(d>=0){
-		if(pos-2>=0 && s[d][pos-1]=='-'){
-			pos-=2;
-			ans--;
-			d--;
-		}else if(pos+2<=2*n-1 && s[d][pos+1]=='-'){
-			pos+=2;
-			ans++;
-			d--;
-		}else{
-			d--;
-		}
-	}
-	cout<<ans+1<<endl;
 	return 0;
 }

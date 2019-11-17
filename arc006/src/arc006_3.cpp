@@ -28,6 +28,17 @@ ll power(ll x,ll p){
 
 int main()
 {
+	int n;
+	cin>>n;
+	vector<int> w(n);
+	rep(i,n)cin>>w[i];
+
+	vector<int> dp(n,INF);
+	rep(i,n){
+		*lower_bound(all(dp),w[i])=w[i];
+	}
+
+	cout<<lower_bound(all(dp),INF)-dp.begin()<<endl;
 
 	return 0;
 }
