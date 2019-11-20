@@ -68,17 +68,12 @@ def get_tests(dir,url):
 		h3s = div.find_all("h3")
 		for h3 in h3s:
 
-			# TODO: 改行関係を何とかするabc001など
 			if "入力例" in h3.text:
 				s = h3.text
-				print(h3.text)
+				# print(h3.text)
 				n = re.search("\d(?![>])",s).group()
 				x = div.find('pre').get_text()
-				# x = re.sub("^[\r\n]","",x)
-				x = str(x)
-				print(x)
-				# import pdb; pdb.set_trace()
-				# x = x.rstrip('\r\n')
+				x = str(x).lstrip()
 				file_name = "input_"+str(n)+".txt"
 				path = os.path.join(dir,file_name)
 				with open(path,mode='w') as f:
@@ -87,7 +82,8 @@ def get_tests(dir,url):
 				s = h3.text
 				n = re.search("\d(?![>])",s).group()
 				x = div.find('pre').get_text()
-				x = str(x)
+				x = str(x).lstrip()
+				# '\n'.join(filter(lambda a: a.strip(), x.split('\n')))
 				# x = re.sub("^[\n]","",x,1)
 				# x = x.rstrip('\r\n')
 				file_name = "output_"+str(n)+".txt"
@@ -195,7 +191,9 @@ def comp(DIR,problem_name):
 	---------
 	problem_name : str
 	"""
-	contest_name,problem_number = problem_name.split(sep='_')
+	# TODO: contest_nameバグる
+	# ex. diverta-2
+	contest_name,problem_number = problem_name.split(sep='_')[0], problem_name.split(sep='_')[-1]
 	contest_dir = os.path.join(DIR,contest_name)
 	src_dir = os.path.join(contest_dir,"src/")
 	problem_path = os.path.join(src_dir,problem_name)

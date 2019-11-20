@@ -19,12 +19,19 @@ int dy[4]={0,1,0,-1};
 bool valid(int lx,int ux,int ly,int uy,int x,int y){
 	return lx<=x&&x<ux&&ly<=y&&y<uy; 
 }
+ll power(ll x,ll p){
+	if(p==0)return 1;
+	ll res=power(x*x%mod,p/2);
+	if(p%2==1)res=res*x%mod;
+	return res;
+}
 
 struct union_find{
+  int n;
   vector<int> par,rank,size;
 
   // 頂点xの根を見たいときはuf.find(x)を使う
-  union_find(int n) : par(n),rank(n),size(n){init(n);}
+  union_find(int n) : n(n),par(n),rank(n),size(n){init(n);}
 
   void init(int n){
     rep(i,n) par[i]=i,rank[i]=i,size[i]=1;
@@ -63,3 +70,19 @@ struct union_find{
     return GetRoot(x) == GetRoot(y);
   }
 };
+
+int main()
+{
+	int n,m;
+	cin>>n>>m;
+	union_find uf(n);
+	rep(i,m){
+		int a,b;
+		cin>>a>>b;
+		a--,b--;
+		uf.Unite(a,b);
+	}
+
+	cout<<uf.getNumOfComponents()-1<<endl;
+	return 0;
+}
