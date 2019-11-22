@@ -26,22 +26,10 @@ ll power(ll x,ll p){
 	return res;
 }
 
-double func(double x, double p){
-	return x + p/pow(2,x/1.5);
-}
-
 int main()
 {
-	double p;
-	cin>>p;
-
-	double right=p,left=0;
-	while(abs(right-left)>1e-9){
-		double midl=(right+2*left)/3;
-		double midr=(2*right+left)/3;
-		if(func(midl,p)<func(midr,p))right=midr;
-		else left=midl;
-	}
-	cout<<setprecision(12)<<func(right,p)<<endl;
+	int r;
+	cin>>r;
+	cout<<r*r<<endl;
 	return 0;
 }

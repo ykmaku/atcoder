@@ -28,6 +28,17 @@ ll power(ll x,ll p){
 
 int main()
 {
+	ll l,x,y,s,d;
+	cin>>l>>x>>y>>s>>d;
 
+	d = (d-s+l)%l;
+	s = 0;
+	double ans=10*l;
+	if(y-x>0){
+		ans = min(ans,(double)(l-d)/(y-x));
+	}
+
+	ans = min(ans,(double)d/(x+y));
+	cout<<setprecision(12)<<ans<<endl;
 	return 0;
 }

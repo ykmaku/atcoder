@@ -3,7 +3,7 @@
 using namespace std;
 
 typedef long long int ll;
-typedef pair<int,int> P;
+typedef pair<double,double> P;
 
 #define rep(i,n) for(int i=0;i<(n);++i)
 #define repi(i,a,b) for(int i=int(a);i<(b);i++)
@@ -26,22 +26,32 @@ ll power(ll x,ll p){
 	return res;
 }
 
-double func(double x, double p){
-	return x + p/pow(2,x/1.5);
+double dist(P p,P q){
+	return sqrt(pow(p.first-q.first,2)+pow(p.second-q.second,2));
 }
 
 int main()
 {
-	double p;
-	cin>>p;
-
-	double right=p,left=0;
-	while(abs(right-left)>1e-9){
-		double midl=(right+2*left)/3;
-		double midr=(2*right+left)/3;
-		if(func(midl,p)<func(midr,p))right=midr;
-		else left=midl;
+	int n;
+	cin>>n;
+	vector<P> p(n);
+	rep(i,n){
+		cin>>p[i].first>>p[i].second;
 	}
-	cout<<setprecision(12)<<func(right,p)<<endl;
+	sort(all(p));
+	double ans=0;
+	do{
+		double res=0;
+		rep(i,n-1){
+			res += dist(p[i+1],p[i]);
+		}
+		ans += res;
+		// cout<<res<<endl;
+	}while(next_permutation(all(p)));
+	double res=1;
+	repi(i,1,n+1) res *= i;
+
+
+	cout<<setprecision(12)<<ans/res<<endl;
 	return 0;
 }

@@ -26,22 +26,39 @@ ll power(ll x,ll p){
 	return res;
 }
 
-double func(double x, double p){
-	return x + p/pow(2,x/1.5);
-}
-
 int main()
 {
-	double p;
-	cin>>p;
+	int n,k;
+	cin>>n>>k;
+	vector<ll> h(n+1,0);
+	repi(i,1,n+1)cin>>h[i];
 
-	double right=p,left=0;
-	while(abs(right-left)>1e-9){
-		double midl=(right+2*left)/3;
-		double midr=(2*right+left)/3;
-		if(func(midl,p)<func(midr,p))right=midr;
-		else left=midl;
+	if(n==k){
+		cout<<0<<endl;
+		return 0;
 	}
-	cout<<setprecision(12)<<func(right,p)<<endl;
+
+	vector<vector<ll>> dp(n+1,vector<ll>(n+1,1LL<<60));
+
+	dp[0][0]=0;
+
+	repi(i,1,n+1){
+		repi(j,1,i+1){
+			repi(l,1,i+1){
+				dp[i][j] = min(dp[i][j], dp[i-l][j-1]+max(0LL,h[i]-h[i-l]));
+			}
+		}
+	}
+
+	ll ans=1LL<<60;
+	rep(i,n+1) ans=min(ans, dp[i][n-k]);
+
+	cout<<ans<<endl;
+
+	// rep(i,n+1){
+	// 	rep(j,n+1)cout<<dp[i][j]<<" ";
+	// 	cout<<endl;
+	// }
+	
 	return 0;
 }

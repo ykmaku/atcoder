@@ -26,22 +26,23 @@ ll power(ll x,ll p){
 	return res;
 }
 
-double func(double x, double p){
-	return x + p/pow(2,x/1.5);
-}
-
 int main()
 {
-	double p;
-	cin>>p;
-
-	double right=p,left=0;
-	while(abs(right-left)>1e-9){
-		double midl=(right+2*left)/3;
-		double midr=(2*right+left)/3;
-		if(func(midl,p)<func(midr,p))right=midr;
-		else left=midl;
+	int n;
+	string s;
+	cin>>n>>s;
+	if(n%2!=0){
+		cout<<"No"<<endl;
+		return 0;
 	}
-	cout<<setprecision(12)<<func(right,p)<<endl;
+	rep(i,n/2){
+		if(s[i]!=s[i+n/2]){
+			cout<<"No"<<endl;
+			return 0;
+		}
+	}
+
+	cout<<"Yes"<<endl;
+
 	return 0;
 }
