@@ -3,7 +3,7 @@
 using namespace std;
 
 typedef long long int ll;
-typedef pair<int,int> P;
+typedef pair<string,int> P;
 
 #define rep(i,n) for(int i=0;i<(n);++i)
 #define repi(i,a,b) for(int i=int(a);i<(b);i++)
@@ -26,8 +26,36 @@ ll power(ll x,ll p){
 	return res;
 }
 
+string transform(string s){
+	string t;
+	int n = s.size();
+	int i=0;
+	while(i<n){
+		if(i<n-1&&s[i]==s[i+1])i++;
+		else{
+			t += s[i];
+		}
+		i++;
+	}
+	return t;
+}
+
 int main()
 {
+	int n;
+	string s;
+	cin>>n>>s;
+
+	map<char,int> cnt;
+	cnt.emplace('R',0);
+	cnt.emplace('G',0);
+	cnt.emplace('B',0);
+
+	rep(i,n)cnt[s[i]]++;
+
+	int ans=0;
+	for(auto x:cnt)if(x.second%2!=0)ans++;
+	cout<<ans<<endl;
 
 	return 0;
 }

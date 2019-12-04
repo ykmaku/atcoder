@@ -28,6 +28,24 @@ ll power(ll x,ll p){
 
 int main()
 {
+	ll n;
+	string s;
+	cin>>n>>s;
 
+	ll ans=0;
+
+	rep(i,10)rep(j,10)rep(k,10){
+		int flag=0;
+		rep(l,n){
+			if(flag==0&&s[l]-'0'==i)flag=1;
+			else if(flag==1&&s[l]-'0'==j)flag=2;
+			else if(flag==2&&s[l]-'0'==k){
+				// cout<<i<<j<<k<<endl;
+				ans++;
+				break;
+			}
+		}
+	}
+	cout<<ans<<endl;
 	return 0;
 }

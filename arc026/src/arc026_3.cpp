@@ -28,6 +28,6 @@ ll power(ll x,ll p){
 
 int main()
 {
-
+	
 	return 0;
 }

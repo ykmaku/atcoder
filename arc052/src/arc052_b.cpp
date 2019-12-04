@@ -4,6 +4,7 @@ using namespace std;
 
 typedef long long int ll;
 typedef pair<int,int> P;
+typedef tuple<int,int,int> T;
 
 #define rep(i,n) for(int i=0;i<(n);++i)
 #define repi(i,a,b) for(int i=int(a);i<(b);i++)
@@ -28,6 +29,16 @@ ll power(ll x,ll p){
 
 int main()
 {
-
+	int n,q;
+	cin>>n>>q;
+	vector<T> sui;
+	rep(i,n){
+		int x,r,h;
+		cin>>x>>r>>h;
+		sui.push_back(T(x,r,h));
+	}
+	vector<P> query(q);
+	rep(i,q)cin>>query[i].first>>query[i].second;
+	
 	return 0;
 }

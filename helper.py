@@ -24,7 +24,6 @@ CONTSET_URL  = "https://atcoder.jp/contests/"
 if __name__ == "__main__":
 	# print(os.path.join(ROOT_DIR,"src/","myconfig.py"))
 
-	# 初めて使うときはユーザー情報を取得する
 	if not os.path.isfile(os.path.join(ROOT_DIR,"src/","myconfig.py")):
 		file_name = "myconfig.py"
 		path = os.path.join(ROOT_DIR,"src/",file_name)
@@ -41,7 +40,6 @@ if __name__ == "__main__":
 
 	args = sys.argv
 
-	# コンテストフォルダ等作成
 	if args[1] == "make":
 		contest_name = args[2]
 		print(contest_name)
@@ -52,9 +50,9 @@ if __name__ == "__main__":
 
 		task_url = CONTSET_URL+contest_name+"/tasks/"+problem_name
 
-		# TODO: ファイル名からコンテスト名を取得できるようにする
 		task_path = os.path.join(ROOT_DIR,contest_name,"test/",problem_name)
 		if(glob.glob(task_path+"/*")==[]):
 			acat.get_tests(task_path,task_url)
 		acat.comp(ROOT_DIR,problem_name)
 		acat.test(ROOT_DIR,contest_name,problem_name)
+
