@@ -28,6 +28,17 @@ ll power(ll x,ll p){
 
 int main()
 {
-
+	map<char,char> mp = {
+		{'O','0'},
+		{'D','0'},
+		{'I','1'},
+		{'Z','2'},
+		{'S','5'},
+		{'B','8'},
+	};
+	string s;
+	cin>>s;
+	rep(i,s.size())if(mp.find(s[i])!=mp.end())s[i] = mp[s[i]];
+	cout<<stoi(s)<<endl;
 	return 0;
 }

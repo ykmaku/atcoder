@@ -28,6 +28,14 @@ ll power(ll x,ll p){
 
 int main()
 {
-
+	ll n;
+	cin>>n;
+	repi(i,1,50000){
+		if(floor(i*1.08)==n){
+			cout<<i<<endl;
+			return 0;
+		}
+	}
+	cout<<":("<<endl;
 	return 0;
 }

@@ -28,6 +28,32 @@ ll power(ll x,ll p){
 
 int main()
 {
+	int line,n,m;
+	cin>>line>>n>>m;
+	vector<int> l(n),x(m),y(m);
+	rep(i,n)cin>>l[i];
+	rep(i,m)cin>>x[i]>>y[i];
+
+	vector<int> diff(n-1);
+	rep(i,n-1){
+		diff[i] = l[i+1] - l[i]-1;
+	}
+	int front=l[0]-1, back=line-l[n-1];
+	sort(all(diff));
+	vector<int> sum(n,0);
+	rep(i,n-1)sum[i+1] = sum[i]+diff[i];
+
+	rep(i,m){
+		int k = upper_bound(all(diff),x[i]+y[i]) - diff.begin();
+		int ans = n;
+		int res=0;
+		if(k>0)res += sum[k];
+		res += (x[i]+y[i])*(n-k-1);
+		ans += res;
+		ans += min(front,x[i]);
+		ans += min(back,y[i]);
+		cout<<ans<<endl;
+	}
 
 	return 0;
 }

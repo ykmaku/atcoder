@@ -21,12 +21,13 @@ bool valid(int lx,int ux,int ly,int uy,int x,int y){
 }
 
 struct union_find{
+  int n;
   vector<int> par,rank,size;
 
   // 頂点xの根を見たいときはuf.find(x)を使う
-  union_find(int n) : par(n),rank(n),size(n){init(n);}
+  union_find(int _n) : n(_n),par(n),rank(n),size(n){init();}
 
-  void init(int n){
+  void init(){
     rep(i,n) par[i]=i,rank[i]=i,size[i]=1;
   }
 

@@ -28,6 +28,24 @@ ll power(ll x,ll p){
 
 int main()
 {
+	ll t[2],a[2],b[2];
+	rep(i,2)cin>>t[i];
+	rep(i,2)cin>>a[i];
+	rep(i,2)cin>>b[i];
+
+
+	ll x = (a[0]-b[0])*t[0];
+	ll y = (a[1]-b[1])*t[1];
+
+		// cout<<x<<" "<<y<<endl;
+	if(x>0)x*=-1,y*=-1;
+	if(x+y<0){
+		cout<<0<<endl;
+	}else if(x+y==0){
+		cout<<"infinity"<<endl;
+	}else{
+		cout<<(-x)/(x+y)*2+(-x%(x+y)==0?0:1)<<endl;
+	}
 
 	return 0;
 }

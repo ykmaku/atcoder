@@ -28,6 +28,8 @@ ll power(ll x,ll p){
 
 int main()
 {
-
+	int n,a,b;
+	cin>>n>>a>>b;
+	cout<<min(n,5)*b+max(0,n-5)*a<<endl;
 	return 0;
 }

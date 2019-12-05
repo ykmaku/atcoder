@@ -28,8 +28,12 @@ ll power(ll x,ll p){
 
 int main()
 {
+<<<<<<< HEAD
 	int n,m,l,p,q,r;
 	cin>>n>>m>>l>>p>>q>>r;
 	
+=======
+
+>>>>>>> ebd0d2eb028f70f4e04a953aed7d5c2aab9f3a11
 	return 0;
 }

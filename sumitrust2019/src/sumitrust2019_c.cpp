@@ -28,6 +28,20 @@ ll power(ll x,ll p){
 
 int main()
 {
+	int x;
+	cin>>x;
+	int target = x%100;
+	int num=0;
+	repr(i,5,1){
+		int res=target/i;
+		target -= res*i;
+		num+=res;
+	}
+
+	x -= (x%100);
+	int now = 100*num;
+	if(now>x)cout<<0<<endl;
+	else cout<<1<<endl;
 
 	return 0;
 }

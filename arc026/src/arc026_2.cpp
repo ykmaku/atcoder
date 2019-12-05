@@ -28,6 +28,17 @@ ll power(ll x,ll p){
 
 int main()
 {
-
+	ll n;
+	cin>>n;
+	ll sum=0;
+	for (ll i = 1; i*i<=n; i++){
+		if(n%i==0)sum+=i+n/i;
+		if(i*i==n)sum-=i;
+	}
+	sum-=n;
+	// if(n==1)sum=0;
+	if(sum==n)cout<<"Perfect"<<endl;
+	else if(sum<n)cout<<"Deficient"<<endl;
+	else cout<<"Abundant"<<endl;
 	return 0;
 }

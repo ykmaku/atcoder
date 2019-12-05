@@ -67,7 +67,7 @@ def get_tests(dir,url):
 	for div in soup.find_all('div'):
 		h3s = div.find_all("h3")
 		for h3 in h3s:
-
+			# print(div)
 			if "入力例" in h3.text:
 				s = h3.text
 				# print(h3.text)
@@ -93,31 +93,31 @@ def get_tests(dir,url):
 
 				with open(path,mode='w') as f:
 					f.write(x)
-	# for sec in soup.find_all('section'):
-	# 	h3s = sec.find_all("h3")
-	# 	import pdb; pdb.set_trace()
-	# 	for h3 in h3s:
-	# 		if "入力例" in h3.text:
-	# 			s = h3.text
-	# 			n = re.search("\d(?![>])",s).group()
-	# 			x = sec.find('pre').get_text()
-	# 			x = str(x)
-	# 			file_name = "input_"+str(n)+".txt"
-	# 			path = os.path.join(dir,file_name)
-	# 			with open(path,mode='w') as f:
-	# 				f.write(x)
-	# 		if "出力例" in h3.text:
-	# 			s = h3.text
-	# 			n = re.search("\d(?![>])",s).group()
-	# 			x = sec.find('pre').get_text()
-	# 			x = str(x)
-	# 			file_name = "output_"+str(n)+".txt"
-	# 			path = os.path.join(dir,file_name)
+	for sec in soup.find_all('section'):
+		h3s = sec.find_all("h3")
+		# import pdb; pdb.set_trace()
+		for h3 in h3s:
+			if "入力例" in h3.text:
+				s = h3.text
+				n = re.search("\d(?![>])",s).group()
+				x = sec.find('pre').get_text()
+				x = str(x).lstrip()
+				file_name = "input_"+str(n)+".txt"
+				path = os.path.join(dir,file_name)
+				with open(path,mode='w') as f:
+					f.write(x)
+			if "出力例" in h3.text:
+				s = h3.text
+				n = re.search("\d(?![>])",s).group()
+				x = sec.find('pre').get_text()
+				x = str(x).lstrip()
+				file_name = "output_"+str(n)+".txt"
+				path = os.path.join(dir,file_name)
 
-	# 			x = x.replace('\r','')
+				x = x.replace('\r','')
 
-	# 			with open(path,mode='w') as f:
-	# 				f.write(x)
+				with open(path,mode='w') as f:
+					f.write(x)
 
 def make_contest(DIR,contest_name):
 	"""

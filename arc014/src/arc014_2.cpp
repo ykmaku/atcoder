@@ -28,6 +28,21 @@ ll power(ll x,ll p){
 
 int main()
 {
+	int n;
+	cin>>n;
+	vector<string> w(n);
+	rep(i,n)cin>>w[i];
 
+	set<string> s;
+	char last=w[0][0];
+	rep(i,n){
+		if(last!=w[i][0]||s.count(w[i])!=0){
+			cout<<(i%2==0?"LOSE":"WIN")<<endl;
+			return 0;
+		}
+		s.emplace(w[i]);
+		last = w[i][w[i].size()-1];
+	}
+	cout<<"DRAW"<<endl;
 	return 0;
 }

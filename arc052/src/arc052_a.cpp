@@ -28,6 +28,14 @@ ll power(ll x,ll p){
 
 int main()
 {
+	string s;
+	cin>>s;
+
+	int left=0,right=s.size()-1;
+	while(!(0<=s[left]-'0' && s[left]-'0'<=9))left++;
+	while(!(0<=s[right]-'0' && s[right]-'0'<=9))right--;
+	if(left!=right)cout<<(s[left]-'0')*10+(s[right]-'0')<<endl;
+	else cout<<s[left]<<endl;
 
 	return 0;
 }

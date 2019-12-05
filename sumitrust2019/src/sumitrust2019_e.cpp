@@ -28,6 +28,20 @@ ll power(ll x,ll p){
 
 int main()
 {
+	ll n;
+	cin>>n;
+	vector<ll> a(n);
+	rep(i,n)cin>>a[i];
 
+	vector<ll> num(n+1,0);
+	num[0] = 3;
+	ll ans=1;
+	rep(i,n){
+		ans *= num[a[i]];
+		ans%=mod;
+		num[a[i]]=max(0LL,num[a[i]]-1);
+		num[a[i]+1]++;
+	}
+	cout<<ans<<endl;
 	return 0;
 }
