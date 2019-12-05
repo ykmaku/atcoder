@@ -28,30 +28,8 @@ ll power(ll x,ll p){
 
 int main()
 {
-	vector<char> b(10);
-	rep(i,10)cin>>b[i];
-	map<char,char> digit,rev;
-	rep(i,10){
-		digit[b[i]] = '0'+i;
-		rev['0'+i] = b[i];
-	}
-	int n;
-	cin>>n;
-	vector<string> s(n);
-	rep(i,n)cin>>s[i];
-	rep(i,n){
-		rep(j,s[i].size()){
-			s[i][j] = digit[s[i][j]];
-		}
-	}
-	sort(all(s),[&](string s,string t){
-		return stoi(s)<stoi(t);
-	});
-	rep(i,n){
-		rep(j,s[i].size()){
-			s[i][j] = rev[s[i][j]];
-		}
-	}
-	rep(i,n)cout<<s[i]<<endl;
+	int a,b;
+	cin>>a>>b;
+	cout<<a*b*b<<endl;
 	return 0;
 }

@@ -26,32 +26,40 @@ ll power(ll x,ll p){
 	return res;
 }
 
+
 int main()
 {
-	vector<char> b(10);
-	rep(i,10)cin>>b[i];
-	map<char,char> digit,rev;
-	rep(i,10){
-		digit[b[i]] = '0'+i;
-		rev['0'+i] = b[i];
-	}
-	int n;
-	cin>>n;
-	vector<string> s(n);
-	rep(i,n)cin>>s[i];
-	rep(i,n){
-		rep(j,s[i].size()){
-			s[i][j] = digit[s[i][j]];
+	int n,m;
+	cin>>n>>m;
+	vector<vector<int>> g(3*n,vector<int>());
+	rep(i,m){
+		int u,v;
+		cin>>u>>v;
+		u--;v--;
+		rep(j,3){
+			g[u+j*n].push_back(v+((j+1)%3)*n);
 		}
 	}
-	sort(all(s),[&](string s,string t){
-		return stoi(s)<stoi(t);
-	});
-	rep(i,n){
-		rep(j,s[i].size()){
-			s[i][j] = rev[s[i][j]];
+
+	int S,T;
+	cin>>S>>T;
+	S--;T--;
+
+	vector<int> dist(3*n,-1);
+	queue<int> que;
+	que.push(S);
+	dist[S]=0;
+	while(!que.empty()){
+		int node = que.front();que.pop();
+		for(auto x:g[node]){
+			if(dist[x]<0){
+				dist[x] = dist[node]+1;
+				que.push(x);
+			}
 		}
 	}
-	rep(i,n)cout<<s[i]<<endl;
+
+	cout<<(dist[T]<0?-1:dist[T]/3)<<endl;
+
 	return 0;
 }

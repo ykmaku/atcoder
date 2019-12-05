@@ -28,6 +28,17 @@ ll power(ll x,ll p){
 
 int main()
 {
-
+	// int n;
+	// cin>>n;
+	// int ans=0;
+	// rep(i,n){
+	// 	int a,b;
+	// 	cin>>a>>b;
+	// 	ans+=a*b;
+	// }
+	// cout<<(int)(ans*1.05)<<endl;
+	int a,x,b;
+	cin>>x>>a>>b;
+	cout<<(abs(x-a)<abs(x-b)?'A':'B')<<endl;
 	return 0;
 }

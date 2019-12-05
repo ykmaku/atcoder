@@ -28,30 +28,30 @@ ll power(ll x,ll p){
 
 int main()
 {
-	vector<char> b(10);
-	rep(i,10)cin>>b[i];
-	map<char,char> digit,rev;
-	rep(i,10){
-		digit[b[i]] = '0'+i;
-		rev['0'+i] = b[i];
+	int H,W;
+	ll K,V;
+	cin>>H>>W>>K>>V;
+	vector<vector<ll>> a(H,vector<ll>(W));
+	rep(i,H)rep(j,W)cin>>a[i][j];
+
+	vector<vector<ll>> sum(H+1,vector<ll>(W+1,0LL));
+	repi(i,1,H+1)repi(j,1,W+1){
+		sum[i][j] = sum[i][j-1]+a[i-1][j-1];
 	}
-	int n;
-	cin>>n;
-	vector<string> s(n);
-	rep(i,n)cin>>s[i];
-	rep(i,n){
-		rep(j,s[i].size()){
-			s[i][j] = digit[s[i][j]];
-		}
+
+	rep(i,H)rep(j,W+1){
+		sum[i+1][j] += sum[i][j];
 	}
-	sort(all(s),[&](string s,string t){
-		return stoi(s)<stoi(t);
-	});
-	rep(i,n){
-		rep(j,s[i].size()){
-			s[i][j] = rev[s[i][j]];
-		}
+
+	ll ans = 0;
+	repi(h1,1,H+1)repi(h2,h1,H+1)repi(w1,1,W+1)repi(w2,w1,W+1){
+		ll s = (h2-h1+1)*(w2-w1+1);
+		ll value = sum[h2][w2] - sum[h2][w1-1] - sum[h1-1][w2] + sum[h1-1][w1-1];
+		ll res = value+s*K;
+		if(res>V)continue;
+		ans = max(ans,s);
 	}
-	rep(i,n)cout<<s[i]<<endl;
+	cout<<ans<<endl;
+
 	return 0;
 }
