@@ -28,21 +28,38 @@ ll power(ll x,ll p){
 
 int main()
 {
-	
-	vector<int> box(3),obj(3);
-	rep(i,3)cin>>box[i];
-	rep(i,3)cin>>obj[i];
+	ll n,k;
+	cin>>n>>k;
 
-	sort(all(obj));
+	ll sqrt_n = ll(sqrt(n));
 
-	int ans=0;
-	do{
-		int res = 1;
-		rep(i,3){
-			res *= box[i]/obj[i];
-		}
-		ans = max(ans,res);
-	}while(next_permutation(all(obj)));
-	cout<<ans<<endl;	
+
+	vector<ll> num;
+	ll cnt = 0;
+	for(ll i=1;;i++){
+		num.push_back(n/i - n/(i+1));
+		cnt += n/i - n/(i+1);
+		if(n/(i+1)<=sqrt_n)break;
+	}
+	rep(i,n-cnt)num.push_back(1);
+
+	int m = num.size();
+	reverse(all(num));
+
+	vector<vector<ll>> dp(m,vector<ll>(k,0LL));
+
+	rep(i,m) dp[i][0] = num[i];
+
+	rep(i,k-1){
+		vector<ll> sum(m);
+		sum[0] = dp[0][i];
+		repi(j,1,m)sum[j] = sum[j-1]+dp[j][i], sum[j]%=mod;
+		rep(j,m)dp[j][i+1] = sum[m-1-j]*num[j], dp[j][i+1]%=mod;
+	}
+
+	ll ans=0;
+	rep(i,m){ans+=dp[i][k-1],ans%=mod;}
+	cout<<ans<<endl;
+
 	return 0;
 }

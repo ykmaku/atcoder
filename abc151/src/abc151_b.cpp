@@ -28,25 +28,19 @@ ll power(ll x,ll p){
 
 int main()
 {
-	ll n,k;
-	cin>>n>>k;
+	int n,m,k;
+	cin>>n>>k>>m;
+	vector<int> a(n-1);
+	rep(i,n-1)cin>>a[i];
 
-	ll sqrt_n = ll(sqrt(n));
-
-	vector<ll> a(sqrt_n+10,0);
-	repi(i,1,sqrt_n+1){
-		a[i] = n/i - (n+i)/(i+1);
-	}
-
-	vector<vector<ll>> dp(sqrt_n+10,vector<ll>(k+1,0));
-	repi(i,1,sqrt_n+1){
-		dp[i][1] = a[i];
-	}
-	repi(kk,2,k+1){
-		repi(i,1,sqrt_n){
-			dp[i][kk];
+	double sum = accumulate(all(a),0);
+	rep(kk,k+1){
+		double point = (double)(sum+kk)/n;
+		if(point>=(double)m){
+			cout<<kk<<endl;
+			return 0;
 		}
 	}
-
+	cout<<-1<<endl;
 	return 0;
 }

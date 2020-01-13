@@ -6,7 +6,7 @@ typedef long long int ll;
 typedef pair<int,int> P;
 
 #define rep(i,n) for(int i=0;i<(n);++i)
-#define repi(i,a,b) for(int i=int(a);i<(b);i++)
+#define repi(i,a,b) for(ll i=ll(a);i<(b);i++)
 #define repr(i,b,a) for(int i=int(b);i>=(a);i--)
 #define all(x) x.begin(),x.end()
 
@@ -26,23 +26,27 @@ ll power(ll x,ll p){
 	return res;
 }
 
+
+
 int main()
 {
-	
-	vector<int> box(3),obj(3);
-	rep(i,3)cin>>box[i];
-	rep(i,3)cin>>obj[i];
-
-	sort(all(obj));
-
-	int ans=0;
-	do{
-		int res = 1;
-		rep(i,3){
-			res *= box[i]/obj[i];
-		}
-		ans = max(ans,res);
-	}while(next_permutation(all(obj)));
-	cout<<ans<<endl;	
+    ll n;
+    cin>>n;
+    if(n%2!=0){
+        cout<<0<<endl;
+        return 0;
+    }
+    ll ans = 0;
+    n /= 2;
+    for(ll i = 5; n/i>=1;i*=5){
+        ans += n/i;
+    }
+    // repi(i,1,18){
+    //     ans += (n/10);
+    //     ans += (n/100);
+    //     // ans += (n/50+1)/2;
+    //     n/=10;
+    // }
+    cout<<ans<<endl;
 	return 0;
 }

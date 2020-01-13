@@ -28,21 +28,28 @@ ll power(ll x,ll p){
 
 int main()
 {
-	
-	vector<int> box(3),obj(3);
-	rep(i,3)cin>>box[i];
-	rep(i,3)cin>>obj[i];
+	ll n,k,r,s,p;
+	string t;
+	cin>>n>>k>>r>>s>>p>>t;
 
-	sort(all(obj));
-
-	int ans=0;
-	do{
-		int res = 1;
-		rep(i,3){
-			res *= box[i]/obj[i];
+	vector<int> used(n,-1);
+	ll ans=0;
+	rep(pos,n){
+		if(used[pos]>0)break;
+		char hand = 'a';
+		for (int i = pos; i < n; i+=k){
+			used[i] = 1;
+			if(hand==t[i]){
+				hand = 'a';
+			}else{
+				if(t[i]=='r')ans+=p,hand='r';
+				else if(t[i]=='s')ans+=r,hand='s';
+				else ans+=s,hand='p';
+			}
+			// cout<<ans<<endl;
 		}
-		ans = max(ans,res);
-	}while(next_permutation(all(obj)));
-	cout<<ans<<endl;	
+	}
+
+	cout<<ans<<endl;
 	return 0;
 }

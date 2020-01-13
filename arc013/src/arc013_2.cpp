@@ -28,6 +28,20 @@ ll power(ll x,ll p){
 
 int main()
 {
-
+	int n;
+	cin>>n;
+	vector<vector<int>> obj(n,vector<int>(3));
+	rep(i,n){
+		rep(j,3)cin>>obj[i][j];
+		sort(all(obj[i]));
+	}
+	int ans = 1;
+	rep(i,3){
+		vector<int> tmp;
+		rep(j,n)tmp.push_back(obj[j][i]);
+		ans *= *max_element(all(tmp));
+	}
+	cout<<ans<<endl;
+	
 	return 0;
 }

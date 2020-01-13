@@ -21,28 +21,46 @@ bool valid(int lx,int ux,int ly,int uy,int x,int y){
 }
 ll power(ll x,ll p){
 	if(p==0)return 1;
-	ll res=power(x*x%mod,p/2);
-	if(p%2==1)res=res*x%mod;
+	ll res=power(x*x,p/2);
+	if(p%2==1)res=res*x;
 	return res;
 }
 
+ll func(int k){
+	if(k<=0)return 0;
+	ll ret = 0;
+	rep(i,k){
+		if(i==0)ret=1;
+		else ret = power(10,i) + ret*9;
+	}
+	return ret;
+}
+
+ll solve(ll x){
+	int ans=0;
+	rep(i,x+1){
+		int res=i;
+		while(res>0){
+			if(res%10==1)ans++;
+			res/=10;
+		}
+	}
+	return ans;
+}
+
+
 int main()
 {
-	
-	vector<int> box(3),obj(3);
-	rep(i,3)cin>>box[i];
-	rep(i,3)cin>>obj[i];
+	ll n;
+	cin>>n;
 
-	sort(all(obj));
-
-	int ans=0;
-	do{
-		int res = 1;
-		rep(i,3){
-			res *= box[i]/obj[i];
-		}
-		ans = max(ans,res);
-	}while(next_permutation(all(obj)));
-	cout<<ans<<endl;	
+	ll ans=0;
+	ll res = n;
+	while(res>0){
+		ans += (res/10) + (res%10>0?1:0);
+		res/=10;
+	}
+	cout<<ans<<endl;
+	cout<<"correct = "<<solve(n)<<endl;
 	return 0;
 }

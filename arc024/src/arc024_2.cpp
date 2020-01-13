@@ -26,23 +26,34 @@ ll power(ll x,ll p){
 	return res;
 }
 
+
+
 int main()
 {
-	
-	vector<int> box(3),obj(3);
-	rep(i,3)cin>>box[i];
-	rep(i,3)cin>>obj[i];
+	int n;
+	cin>>n;
+	vector<int> color(2*n,0);
+	rep(i,n)cin>>color[i];
 
-	sort(all(obj));
+	int sum = accumulate(all(color),0);
+	if(sum==n||sum==0){
+		cout<<-1<<endl;
+		return 0;
+	}
 
-	int ans=0;
-	do{
-		int res = 1;
-		rep(i,3){
-			res *= box[i]/obj[i];
+	rep(i,n)color[i+n] = color[i];
+	int cnt = 0;
+	int parity = -1;
+	int max_ = 0;
+	rep(i,2*n){
+		if(color[i]==parity)cnt++;
+		else{
+			max_ = max(max_, cnt);
+			cnt = 1;
+			parity = color[i];
 		}
-		ans = max(ans,res);
-	}while(next_permutation(all(obj)));
-	cout<<ans<<endl;	
+	}
+	cout<<(max_+1)/2<<endl;
+
 	return 0;
 }

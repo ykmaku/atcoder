@@ -28,21 +28,25 @@ ll power(ll x,ll p){
 
 int main()
 {
-	
-	vector<int> box(3),obj(3);
-	rep(i,3)cin>>box[i];
-	rep(i,3)cin>>obj[i];
+	int l,r;
+	cin>>l>>r;
+	vector<int> left(l),right(r);
+	rep(i,l)cin>>left[i];
+	rep(i,r)cin>>right[i];
 
-	sort(all(obj));
+	multiset<int> s;
+	rep(i,r)s.insert(right[i]);
 
-	int ans=0;
-	do{
-		int res = 1;
-		rep(i,3){
-			res *= box[i]/obj[i];
+	int ans = 0;
+	rep(i,l){
+		auto it = s.find(left[i]);
+		if(it!=s.end()){
+			ans++;
+			s.erase(it);
 		}
-		ans = max(ans,res);
-	}while(next_permutation(all(obj)));
-	cout<<ans<<endl;	
+	}
+	cout<<ans<<endl;
+
+
 	return 0;
 }

@@ -28,21 +28,16 @@ ll power(ll x,ll p){
 
 int main()
 {
-	
-	vector<int> box(3),obj(3);
-	rep(i,3)cin>>box[i];
-	rep(i,3)cin>>obj[i];
-
-	sort(all(obj));
-
-	int ans=0;
-	do{
-		int res = 1;
-		rep(i,3){
-			res *= box[i]/obj[i];
-		}
-		ans = max(ans,res);
-	}while(next_permutation(all(obj)));
-	cout<<ans<<endl;	
+    int n;
+    cin>>n;
+    vector<int> a(n);
+    rep(i,n)cin>>a[i];
+    int now = 0;
+    int cnt = 0;
+    rep(i,n){
+        if(a[i]==now+1)now++,cnt++;
+    }
+    if(now==0)cout<<-1<<endl;
+    else cout<<n-cnt<<endl;
 	return 0;
 }

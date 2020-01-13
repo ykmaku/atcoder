@@ -11,7 +11,7 @@ from getpass import getpass
 
 
 # from src import myconfig
-# from src import atcoder_autotest as acat
+from src import atcoder_autotest as acat
 
 ROOT_DIR = os.path.abspath("./")
 
@@ -33,10 +33,10 @@ if __name__ == "__main__":
 			f.write("USERNAME='{}'\n".format(username))
 			f.write("PASSWORD='{}'\n".format(password))
 	
-	from src import atcoder_autotest as acat
-	from src import myconfig
-	USERNAME = myconfig.USERNAME
-	PASSWORD = myconfig.PASSWORD	
+	# from src import atcoder_autotest as acat
+	# from src import myconfig
+	# USERNAME = myconfig.USERNAME
+	# PASSWORD = myconfig.PASSWORD	
 
 	args = sys.argv
 
