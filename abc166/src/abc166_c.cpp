@@ -21,48 +21,36 @@ bool valid(int lx,int ux,int ly,int uy,int x,int y){
 }
 ll power(ll x,ll p){
 	if(p==0)return 1;
-	ll res=power(x*x,p/2);
-	if(p%2==1)res=res*x;
+	ll res=power(x*x%mod,p/2);
+	if(p%2==1)res=res*x%mod;
 	return res;
 }
 
-ll func(int k){
-	if(k<=0)return 0;
-	ll ret = 0;
-	rep(i,k){
-		if(i==0)ret=1;
-		else ret = power(10,i) + ret*9;
-	}
-	return ret;
-}
-
-ll solve(ll x){
-	int ans=0;
-	rep(i,x+1){
-		int res=i;
-		while(res>0){
-			if(res%10==1)ans++;
-			res/=10;
-		}
-	}
-	return ans;
-}
+int n,m;
+vector<int> h, adj_val;
+vector<vector<int>> g;
 
 
 int main()
 {
-	ll n;
-	cin>>n;
+	cin>>n>>m;
+	g.resize(n);
+	h.resize(n);
+	adj_val.resize(n,0);
+	rep(i,n)cin>>h[i];
+	rep(i,m){
+		int a,b;
+		cin>>a>>b;
+		g[a-1].push_back(b-1);
+		g[b-1].push_back(a-1);
 
-	ll ans=0;
-	ll x=1;
-	rep(digit,10){
-		if(x>n)break;
-		if(n%(x*10)>2*x) ans+=(n+x*10)/(x*10) * x;
-		else ans+=n%(x*10);
-		x*=10;
+		adj_val[a-1] = max(adj_val[a-1],h[b-1]);
+		adj_val[b-1] = max(adj_val[b-1],h[a-1]);
+	}
+	int ans=0;
+	rep(i,n){
+		if(adj_val[i]<h[i])ans++;
 	}
 	cout<<ans<<endl;
-	cout<<"correct = "<<solve(n)<<endl;
 	return 0;
 }

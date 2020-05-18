@@ -29,7 +29,7 @@ def make_dir(DIR,contest_name,problem):
 	return os.path.join(DIR,contest_name,"test/",problem)
 
 
-def get_tests(dir,url):
+def getTests(dir,url):
 	"""
 	url先のページからテストを取得する.
 	テストごとにテストの入力/出力ファイルを作成する
@@ -119,7 +119,7 @@ def get_tests(dir,url):
 				with open(path,mode='w') as f:
 					f.write(x)
 
-def make_contest(DIR,contest_name):
+def makeContest(DIR,contest_name):
 	"""
 	コンテスト開始前に動かすことを想定
 	コンテストのディレクトリを作成
@@ -261,7 +261,7 @@ if __name__ == "__main__":
 	# 	contest_name = "{}{:03d}".format(contest_name,int(contest_round))
 	# 	print(contest_name)
 	# 	# contest_url = CONTSET_URL_HEAD+contest_name+"/"
-	# 	make_contest(contest_name,number_of_problems)
+	# 	makeContest(contest_name,number_of_problems)
 
 	# elif args[1] == "test":
 	# 	contest_name = args[2]
@@ -273,7 +273,7 @@ if __name__ == "__main__":
 	# 	task_url = CONTSET_URL_HEAD+contest_name+"/tasks/"+problem_name
 	# 	task_path = os.path.join(ROOT_DIR,contest_name,"test/",problem)
 	# 	if(glob.glob(task_path)==[]):
-	# 		get_tests(task_url)
+	# 		getTests(task_url)
 	# 	test(problem_name)
 	# elif args[1] == "comp":
 	# 	contest_name = args[2]

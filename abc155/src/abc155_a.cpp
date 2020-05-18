@@ -21,48 +21,18 @@ bool valid(int lx,int ux,int ly,int uy,int x,int y){
 }
 ll power(ll x,ll p){
 	if(p==0)return 1;
-	ll res=power(x*x,p/2);
-	if(p%2==1)res=res*x;
+	ll res=power(x*x%mod,p/2);
+	if(p%2==1)res=res*x%mod;
 	return res;
 }
 
-ll func(int k){
-	if(k<=0)return 0;
-	ll ret = 0;
-	rep(i,k){
-		if(i==0)ret=1;
-		else ret = power(10,i) + ret*9;
-	}
-	return ret;
-}
-
-ll solve(ll x){
-	int ans=0;
-	rep(i,x+1){
-		int res=i;
-		while(res>0){
-			if(res%10==1)ans++;
-			res/=10;
-		}
-	}
-	return ans;
-}
-
-
 int main()
 {
-	ll n;
-	cin>>n;
-
-	ll ans=0;
-	ll x=1;
-	rep(digit,10){
-		if(x>n)break;
-		if(n%(x*10)>2*x) ans+=(n+x*10)/(x*10) * x;
-		else ans+=n%(x*10);
-		x*=10;
-	}
-	cout<<ans<<endl;
-	cout<<"correct = "<<solve(n)<<endl;
+	int a[3];
+	rep(i,3)cin>>a[i];
+	sort(a,a+3);
+	if(a[1]==a[0]&&a[1]!=a[2])cout<<"Yes"<<endl;
+	else if(a[1]==a[2]&&a[1]!=a[0])cout<<"Yes"<<endl;
+	else cout<<"No"<<endl;
 	return 0;
 }

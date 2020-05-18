@@ -43,7 +43,7 @@ if __name__ == "__main__":
 	if args[1] == "make":
 		contest_name = args[2]
 		print(contest_name)
-		acat.make_contest(ROOT_DIR,contest_name)
+		acat.makeContest(ROOT_DIR,contest_name)
 	elif args[1] == "test":
 		contest_name = args[2]
 		problem_name = args[3]
@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
 		task_path = os.path.join(ROOT_DIR,contest_name,"test/",problem_name)
 		if(glob.glob(task_path+"/*")==[]):
-			acat.get_tests(task_path,task_url)
+			acat.getTests(task_path,task_url)
 		acat.comp(ROOT_DIR,problem_name)
 		acat.test(ROOT_DIR,contest_name,problem_name)
 

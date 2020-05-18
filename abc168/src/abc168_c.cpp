@@ -21,48 +21,29 @@ bool valid(int lx,int ux,int ly,int uy,int x,int y){
 }
 ll power(ll x,ll p){
 	if(p==0)return 1;
-	ll res=power(x*x,p/2);
-	if(p%2==1)res=res*x;
+	ll res=power(x*x%mod,p/2);
+	if(p%2==1)res=res*x%mod;
 	return res;
 }
 
-ll func(int k){
-	if(k<=0)return 0;
-	ll ret = 0;
-	rep(i,k){
-		if(i==0)ret=1;
-		else ret = power(10,i) + ret*9;
-	}
-	return ret;
+double rad(double ang){
+	return ang / 180 * M_PI;
 }
-
-ll solve(ll x){
-	int ans=0;
-	rep(i,x+1){
-		int res=i;
-		while(res>0){
-			if(res%10==1)ans++;
-			res/=10;
-		}
-	}
-	return ans;
-}
-
 
 int main()
 {
-	ll n;
-	cin>>n;
+	double a,b,h,m;
+	cin>>a>>b>>h>>m;
 
-	ll ans=0;
-	ll x=1;
-	rep(digit,10){
-		if(x>n)break;
-		if(n%(x*10)>2*x) ans+=(n+x*10)/(x*10) * x;
-		else ans+=n%(x*10);
-		x*=10;
-	}
-	cout<<ans<<endl;
-	cout<<"correct = "<<solve(n)<<endl;
+	double angA = 30*h + 0.5*m - 45;
+	double angB = 6*m - 45;
+
+	angA = rad(angA);
+	angB = rad(angB);
+
+	double dist = sqrt(pow(a*cos(angA) - b*cos(angB), 2) + pow(a*sin(angA) - b*sin(angB),2));
+
+	printf("%.15f\n", dist);
+
 	return 0;
 }

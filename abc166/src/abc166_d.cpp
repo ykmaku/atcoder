@@ -26,43 +26,20 @@ ll power(ll x,ll p){
 	return res;
 }
 
-ll func(int k){
-	if(k<=0)return 0;
-	ll ret = 0;
-	rep(i,k){
-		if(i==0)ret=1;
-		else ret = power(10,i) + ret*9;
-	}
-	return ret;
-}
-
-ll solve(ll x){
-	int ans=0;
-	rep(i,x+1){
-		int res=i;
-		while(res>0){
-			if(res%10==1)ans++;
-			res/=10;
-		}
-	}
-	return ans;
-}
-
-
 int main()
 {
-	ll n;
-	cin>>n;
+	ll x;
+	cin>>x;
 
-	ll ans=0;
-	ll x=1;
-	rep(digit,10){
-		if(x>n)break;
-		if(n%(x*10)>2*x) ans+=(n+x*10)/(x*10) * x;
-		else ans+=n%(x*10);
-		x*=10;
+
+	repi(a,-1000,1001){
+		repi(b,-1000,1001){
+			if(power(a,5) - power(b,5)==x){
+				cout<<a<<" "<<b<<endl;
+				return 0;
+			}
+		}
 	}
-	cout<<ans<<endl;
-	cout<<"correct = "<<solve(n)<<endl;
+
 	return 0;
 }
